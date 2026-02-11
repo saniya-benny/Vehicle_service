@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Motor Vehicle Service Excellence - Home</title>
+<title>Login - Motor Vehicle Service Excellence</title>
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
@@ -31,52 +31,54 @@
 <!-- Particles -->
 <div class="particles" id="particles"></div>
 
-<div class="container page-content" id="pageContent">
+<div class="container page-content" id="pageContent" style="grid-template-columns: 1fr; max-width: 500px; margin: 0 auto;">
 
-    <div>
-        <div class="big-name">
-            VEHICLE<br>SERVICE
+    <div style="text-align: center;">
+        <div class="big-name" style="font-size: 60px; line-height: 60px;">
+            WELCOME<br>BACK
         </div>
     </div>
 
     <div>
-        <div class="section-title">PREMIER AUTOMOTIVE CARE</div>
+        <div class="section-title">SIGN IN</div>
         <div class="divider"></div>
         <div class="text">
-            Your trusted partner for comprehensive vehicle maintenance and repair services.
-            We combine expertise with cutting-edge technology to keep your vehicle running at peak performance.
+            Access your account to manage appointments, view service history, and access exclusive member benefits.
         </div>
     </div>
 
     <div>
-        <div class="section-title">OUR SERVICES</div>
-        <div class="divider"></div>
-        <div class="service-cards">
-            <div class="service-card">
-                <i class="fas fa-oil-can"></i>
-                <h4>OIL CHANGE</h4>
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="remember" name="remember" style="width: auto;">
+                        <span style="color: #bfbfbf; font-size: 14px;">Remember me</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%;">SIGN IN</button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="color: #bfbfbf; font-size: 14px;">
+                    <a href="#" style="color: #c9a227; text-decoration: none;">Forgot Password?</a>
+                </p>
+                <p style="color: #bfbfbf; font-size: 14px; margin-top: 10px;">
+                    Don't have an account? 
+                    <a href="register.html" style="color: #c9a227; text-decoration: none;">Sign Up</a>
+                </p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-car-battery"></i>
-                <h4>BATTERY SERVICE</h4>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-cogs"></i>
-                <h4>ENGINE REPAIR</h4>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-compact-disc"></i>
-                <h4>BRAKE SERVICE</h4>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <div class="section-title">CONTACT & BOOKING</div>
-        <div class="divider"></div>
-        <div class="contact-links">
-            <a href="contact.html" class="contact-link"><i class="fas fa-phone"></i>Call</a>
-            <a href="contact.html" class="contact-link"><i class="fas fa-envelope"></i>Email</a>
         </div>
     </div>
 
