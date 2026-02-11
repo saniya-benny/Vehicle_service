@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Workshops - Motor Vehicle Service Excellence</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="car-loader"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-logo">AUTOCARE</div>
+    <div class="nav-search">
+        <input type="text" class="search-input" placeholder="Search workshops..." id="navSearch">
+        <button class="search-btn" onclick="searchWorkshops()">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="search-workshops.html">SERVICES</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+    </ul>
+</nav>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<div class="container page-content" id="pageContent">
+
+    <div style="grid-column: 1 / -1;">
+        <div class="section-title">SEARCH WORKSHOPS</div>
+        <div class="divider"></div>
+        <div class="text">
+            Find the perfect workshop for your vehicle needs. Filter by location, service type, and rating.
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div style="grid-column: 1 / -1;">
+        <div class="filter-container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                <div class="filter-group">
+                    <label class="filter-label">LOCATION</label>
+                    <input type="text" class="filter-select" id="location" placeholder="Enter city or area..." style="width: 100%; padding: 8px;">
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">SERVICE TYPE</label>
+                    <select class="filter-select" id="serviceFilter">
+                        <option value="">All Services</option>
+                        <option value="Oil Change">Oil Change</option>
+                        <option value="Engine Repair">Engine Repair</option>
+                        <option value="AC Service">AC Service</option>
+                        <option value="Brake Service">Brake Service</option>
+                        <option value="Battery Service">Battery Service</option>
+                        <option value="Tire Service">Tire Service</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">MINIMUM RATING</label>
+                    <select class="filter-select" id="ratingFilter">
+                        <option value="">All Ratings</option>
+                        <option value="4.5">4.5+ Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="3.5">3.5+ Stars</option>
+                        <option value="3">3+ Stars</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">PRICE RANGE</label>
+                    <select class="filter-select" id="priceFilter">
+                        <option value="">All Prices</option>
+                        <option value="0-30">Under $30</option>
+                        <option value="30-50">$30 - $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100+">$100+</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn" onclick="searchWorkshops()">
+                    <i class="fas fa-search"></i> SEARCH WORKSHOPS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div style="grid-column: 1 / -1;">
+        <div class="section-title">AVAILABLE WORKSHOPS</div>
+        <div class="divider"></div>
+        <div class="workshop-grid" id="results">
+            <!-- Workshop cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
+<script>
+// Loading screen
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('hidden');
+    }, 1500);
+});
+
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Show notification
+function showNotification(message, type = 'success') {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.className = `notification ${type} show`;
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Dummy Workshop Data (Simulation)
+const workshops = [
+    {
+        id: 'premium-auto',
+        name: "Premium Auto Care",
+        location: "Kochi",
+        rating: 4.8,
+        reviews: 234,
+        price: 50,
+        services: ["Oil Change", "Engine Repair", "AC Service", "Brake Service"],
+        image: "https://via.placeholder.com/300x200/1a1a1a/c9a227?text=Premium+Auto"
+    },
+    {
+        id: 'quick-fix',
+        name: "Quick Fix Garage",
+        location: "Kochi",
+        rating: 4.2,
+        reviews: 189,
+        price: 40,
+        services: ["Oil Change", "Brake Service", "Battery Service"],
+        image: "https://via.placeholder.com/300x200/1a1a1a/c9a227?text=Quick+Fix"
+    },
+    {
+        id: 'city-clinic',
+        name: "City Car Clinic",
+        location: "Trivandrum",
+        rating: 3.9,
+        reviews: 156,
+        price: 35,
+        services: ["AC Service", "Battery Service", "Tire Service"],
+        image: "https://via.placeholder.com/300x200/1a1a1a/c9a227?text=City+Clinic"
+    },
+    {
+        id: 'expert-garage',
+        name: "Expert Garage",
+        location: "Ernakulam",
+        rating: 4.6,
+        reviews: 298,
+        price: 60,
+        services: ["Engine Repair", "Oil Change", "AC Service", "Tire Service"],
+        image: "https://via.placeholder.com/300x200/1a1a1a/c9a227?text=Expert+Garage"
+    },
+    {
+        id: 'speed-service',
+        name: "Speed Service Center",
+        location: "Kochi",
+        rating: 4.1,
+        reviews: 142,
+        price: 45,
+        services: ["Oil Change", "Brake Service", "Battery Service"],
+        image: "https://via.placeholder.com/300x200/1a1a1a/c9a227?text=Speed+Service"
+    }
+];
+
+function searchWorkshops() {
+    const locationInput = document.getElementById("location").value.toLowerCase();
+    const serviceFilter = document.getElementById("serviceFilter").value;
+    const ratingFilter = parseFloat(document.getElementById("ratingFilter").value) || 0;
+    const priceFilter = document.getElementById("priceFilter").value;
+    const navSearch = document.getElementById("navSearch").value.toLowerCase();
+
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
+
+    // Show loading
+    showNotification('Searching for workshops...');
+
+    setTimeout(() => {
+        const filtered = workshops.filter(workshop => {
+            const matchLocation = !locationInput || workshop.location.toLowerCase().includes(locationInput);
+            const matchNavSearch = !navSearch || workshop.name.toLowerCase().includes(navSearch) || workshop.location.toLowerCase().includes(navSearch);
+            const matchService = !serviceFilter || workshop.services.includes(serviceFilter);
+            const matchRating = workshop.rating >= ratingFilter;
+            
+            let matchPrice = true;
+            if (priceFilter === '0-30') matchPrice = workshop.price < 30;
+            else if (priceFilter === '30-50') matchPrice = workshop.price >= 30 && workshop.price <= 50;
+            else if (priceFilter === '50-100') matchPrice = workshop.price >= 50 && workshop.price <= 100;
+            else if (priceFilter === '100+') matchPrice = workshop.price > 100;
+
+            return matchLocation && matchNavSearch && matchService && matchRating && matchPrice;
+        });
+
+        if (filtered.length === 0) {
+            resultsDiv.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                    <div class="section-title">NO WORKSHOPS FOUND</div>
+                    <div class="divider"></div>
+                    <div class="text">
+                        Try adjusting your filters or search terms to find more workshops.
+                    </div>
+                </div>
+            `;
+            showNotification('No workshops found matching your criteria', 'error');
+            return;
+        }
+
+        filtered.forEach(workshop => {
+            const card = document.createElement("div");
+            card.className = "workshop-card";
+            card.onclick = () => viewWorkshop(workshop.id);
+
+            const stars = '★'.repeat(Math.floor(workshop.rating)) + '☆'.repeat(5 - Math.floor(workshop.rating));
+            
+            card.innerHTML = `
+                <div class="workshop-name">${workshop.name}</div>
+                <div class="workshop-rating">
+                    <span class="stars">${stars}</span>
+                    <span>${workshop.rating} (${workshop.reviews} reviews)</span>
+                </div>
+                <div class="workshop-services">
+                    ${workshop.services.map(service => `<span class="service-tag">${service}</span>`).join("")}
+                </div>
+                <div class="workshop-price">Starting from $${workshop.price}</div>
+                <div class="workshop-actions">
+                    <button class="view-details-btn">View Details</button>
+                </div>
+            `;
+
+            resultsDiv.appendChild(card);
+        });
+
+        showNotification(`Found ${filtered.length} workshop(s)`);
+    }, 1000);
+}
+
+function viewWorkshop(workshopId) {
+    showNotification('Loading workshop details...');
+    setTimeout(() => {
+        window.location.href = `workshop-details.html?id=${workshopId}`;
+    }, 1000);
+}
+
+// Get URL parameters for initial search
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Smooth page transitions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to navigation links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href && href !== '#' && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+                e.preventDefault();
+                
+                document.body.classList.add('page-exit');
+                
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+
+    // Trigger page content animation
+    const pageContent = document.getElementById('pageContent');
+    if (pageContent) {
+        setTimeout(() => {
+            pageContent.classList.add('loaded');
+        }, 100);
+    }
+
+    // Check for search parameter from index page
+    const searchParam = getUrlParameter('search');
+    if (searchParam) {
+        document.getElementById('navSearch').value = searchParam;
+        document.getElementById('location').value = searchParam;
+        searchWorkshops();
+    } else {
+        // Load all workshops by default
+        searchWorkshops();
+    }
+
+    // Enter key search for navbar
+    document.getElementById('navSearch').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchWorkshops();
+        }
+    });
+});
+
+createParticles();
+</script>
+
+</body>
+</html>
