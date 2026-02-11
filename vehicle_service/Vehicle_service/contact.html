@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Motor Vehicle Service Excellence</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-logo">AUTOCARE</div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+    </ul>
+</nav>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<div class="container page-content" id="pageContent" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+
+    <div style="text-align: center;">
+        <div class="big-name" style="font-size: 60px; line-height: 60px;">
+            CONTACT<br>US
+        </div>
+    </div>
+
+    <div>
+        <div class="section-title">GET IN TOUCH</div>
+        <div class="divider"></div>
+        <div class="text">
+            Ready to experience premium automotive care? Reach out to us today to schedule your service or ask any questions about our offerings.
+        </div>
+    </div>
+
+    <div>
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="name">FULL NAME</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">PHONE NUMBER</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">SERVICE TYPE</label>
+                    <input type="text" id="service" name="service" placeholder="e.g., Oil Change, Engine Repair">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">MESSAGE</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your vehicle needs..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%;">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <div class="section-title">CONTACT INFORMATION</div>
+        <div class="divider"></div>
+        <div class="contact-links" style="flex-direction: column; align-items: flex-start;">
+            <a href="tel:+1234567890" class="contact-link">
+                <i class="fas fa-phone"></i>
+                <span>(555) 123-4567</span>
+            </a>
+            <a href="mailto:info@autocare.com" class="contact-link">
+                <i class="fas fa-envelope"></i>
+                <span>info@autocare.com</span>
+            </a>
+            <a href="#" class="contact-link">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>123 Service Road, Auto City, AC 12345</span>
+            </a>
+            <a href="#" class="contact-link">
+                <i class="fas fa-clock"></i>
+                <span>Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Smooth page transitions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to navigation links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only apply transition for internal pages
+            if (href && href !== '#' && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+                e.preventDefault();
+                
+                // Add exit animation
+                document.body.classList.add('page-exit');
+                
+                // Navigate after animation
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+
+    // Trigger page content animation
+    const pageContent = document.getElementById('pageContent');
+    if (pageContent) {
+        setTimeout(() => {
+            pageContent.classList.add('loaded');
+        }, 100);
+    }
+});
+
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+}
+
+createParticles();
+</script>
+
+</body>
+</html>
