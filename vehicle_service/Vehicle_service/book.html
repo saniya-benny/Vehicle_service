@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Service Appointment</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #111;
+        color: #fff;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #1c1c1c;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(255, 193, 7, 0.2);
+    }
+
+    h1 {
+        text-align: center;
+        color: #ffc107;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #ffc107;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #444;
+        background-color: #2a2a2a;
+        color: white;
+        font-size: 14px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #ffc107;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        background-color: #ffc107;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #e0a800;
+    }
+
+    .success-message {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #28a745;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .error {
+        color: red;
+        font-size: 13px;
+        margin-top: 5px;
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Book Service Appointment</h1>
+
+    <form id="appointmentForm">
+
+        <!-- Customer -->
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <div class="error" id="nameError">Name is required</div>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+            <div class="error" id="phoneError">Valid phone number required</div>
+        </div>
+
+        <!-- ✔ Choose Vehicle -->
+        <div class="form-group">
+            <label>Choose Vehicle</label>
+            <select id="vehicle">
+                <option value="">-- Select Vehicle --</option>
+                <option>Car</option>
+                <option>Bike</option>
+                <option>Scooter</option>
+                <option>Truck</option>
+            </select>
+            <div class="error" id="vehicleError">Please choose a vehicle</div>
+        </div>
+
+        <!-- ✔ Choose Service -->
+        <div class="form-group">
+            <label>Select Service</label>
+            <select id="service">
+                <option value="">-- Choose Service --</option>
+                <option>General Service</option>
+                <option>Oil Change</option>
+                <option>Engine Repair</option>
+                <option>Brake Inspection</option>
+                <option>Full Vehicle Checkup</option>
+            </select>
+            <div class="error" id="serviceError">Please select a service</div>
+        </div>
+
+        <!-- ✔ Select Date & Time -->
+        <div class="form-group">
+            <label>Appointment Date</label>
+            <input type="date" id="date">
+            <div class="error" id="dateError">Please select a date</div>
+        </div>
+
+        <div class="form-group">
+            <label>Appointment Time</label>
+            <input type="time" id="time">
+            <div class="error" id="timeError">Please select a time</div>
+        </div>
+
+        <!-- ✔ Pickup / Drop -->
+        <div class="form-group">
+            <label>Pickup / Drop Option</label>
+            <select id="pickup">
+                <option value="">-- Select Option --</option>
+                <option>Workshop Visit</option>
+                <option>Pickup & Drop</option>
+            </select>
+            <div class="error" id="pickupError">Please select pickup option</div>
+        </div>
+
+        <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea rows="4" placeholder="Describe any specific issue (optional)"></textarea>
+        </div>
+
+        <!-- ✔ Confirm Booking -->
+        <button type="submit">Confirm Booking</button>
+
+        <!-- ✔ Booking Confirmation -->
+        <div class="success-message" id="successMessage">
+            Booking Confirmed! Your appointment has been scheduled.
+        </div>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    let name = document.getElementById("name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let vehicle = document.getElementById("vehicle").value;
+    let service = document.getElementById("service").value;
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+    let pickup = document.getElementById("pickup").value;
+
+    document.querySelectorAll(".error").forEach(el => el.style.display = "none");
+
+    if (name === "") {
+        document.getElementById("nameError").style.display = "block";
+        isValid = false;
+    }
+
+    if (phone === "" || phone.length < 10) {
+        document.getElementById("phoneError").style.display = "block";
+        isValid = false;
+    }
+
+    if (vehicle === "") {
+        document.getElementById("vehicleError").style.display = "block";
+        isValid = false;
+    }
+
+    if (service === "") {
+        document.getElementById("serviceError").style.display = "block";
+        isValid = false;
+    }
+
+    if (date === "") {
+        document.getElementById("dateError").style.display = "block";
+        isValid = false;
+    }
+
+    if (time === "") {
+        document.getElementById("timeError").style.display = "block";
+        isValid = false;
+    }
+
+    if (pickup === "") {
+        document.getElementById("pickupError").style.display = "block";
+        isValid = false;
+    }
+
+    if (isValid) {
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("appointmentForm").reset();
+    }
+});
+</script>
+
+</body>
+</html>
