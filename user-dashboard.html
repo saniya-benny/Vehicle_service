@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard - Motor Vehicle Service Excellence</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* Dashboard Specific Styles */
+.dashboard-hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.dashboard-hero .big-name {
+    font-size: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
+}
+
+.dashboard-hero .text {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-card {
+    background: rgba(201, 162, 39, 0.05);
+    border: 2px solid #c9a227;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.dashboard-card:hover::before {
+    left: 100%;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(201, 162, 39, 0.3);
+    background: rgba(201, 162, 39, 0.1);
+    border-color: #fff;
+}
+
+.dashboard-card i {
+    font-size: 3rem;
+    color: #c9a227;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.dashboard-card h3 {
+    color: #c9a227;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.dashboard-card p {
+    color: #bfbfbf;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media(max-width:900px) {
+    .dashboard-hero .big-name {
+        font-size: 50px;
+        line-height: 50px;
+    }
+    
+    .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 30px 20px;
+    }
+    
+    .dashboard-card {
+        padding: 30px 20px;
+    }
+}
+
+@media(max-width:600px) {
+    .dashboard-hero {
+        padding: 40px 20px 30px;
+    }
+    
+    .dashboard-hero .big-name {
+        font-size: 40px;
+        line-height: 40px;
+    }
+    
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .dashboard-card {
+        padding: 25px 20px;
+    }
+    
+    .dashboard-card i {
+        font-size: 2.5rem;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 20px;
+    }
+}
+
+/* Animation for dashboard cards */
+.dashboard-card {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.dashboard-card:nth-child(1) { animation-delay: 0.3s; }
+.dashboard-card:nth-child(2) { animation-delay: 0.4s; }
+.dashboard-card:nth-child(3) { animation-delay: 0.5s; }
+.dashboard-card:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-logo">AUTOCARE</div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="user-dashboard.html">DASHBOARD</a></li>
+        <li><a href="login.html">LOGOUT</a></li>
+    </ul>
+</nav>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<div class="container page-content" id="pageContent">
+
+    <!-- Dashboard Hero Section -->
+    <div class="dashboard-hero">
+        <div class="big-name">
+            WELCOME TO<br>YOUR DASHBOARD
+        </div>
+        <div class="divider"></div>
+        <div class="text">
+            Manage your vehicle services, track appointments, and access your complete automotive care history all in one place.
+        </div>
+    </div>
+
+    <!-- Dashboard Cards Section -->
+    <div class="dashboard-cards">
+        <div class="dashboard-card">
+            <i class="fas fa-calendar-plus"></i>
+            <h3>BOOK SERVICE</h3>
+            <p>Schedule your next vehicle service appointment with our certified technicians. Choose your preferred date and time.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-tachometer-alt"></i>
+            <h3>TRACK SERVICE</h3>
+            <p>Monitor your current service status in real-time. Get updates on progress and estimated completion times.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-history"></i>
+            <h3>SERVICE HISTORY</h3>
+            <p>View your complete vehicle maintenance records. Access past services, repairs, and maintenance schedules.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>NEARBY WORKSHOPS</h3>
+            <p>Find authorized service centers in your area. Get directions, contact information, and operating hours.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// Smooth page transitions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers to navigation links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only apply transition for internal pages
+            if (href && href !== '#' && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+                e.preventDefault();
+                
+                // Add exit animation
+                document.body.classList.add('page-exit');
+                
+                // Navigate after animation
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+
+    // Trigger page content animation
+    const pageContent = document.getElementById('pageContent');
+    if (pageContent) {
+        setTimeout(() => {
+            pageContent.classList.add('loaded');
+        }, 100);
+    }
+});
+
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+}
+
+createParticles();
+</script>
+
+</body>
+</html>

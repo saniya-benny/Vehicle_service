@@ -49,7 +49,7 @@
 
     <div>
         <div class="form-container">
-            <form>
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="email">EMAIL ADDRESS</label>
                     <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
@@ -72,7 +72,7 @@
             
             <div style="text-align: center; margin-top: 20px;">
                 <p style="color: #bfbfbf; font-size: 14px;">
-                    <a href="#" style="color: #c9a227; text-decoration: none;">Forgot Password?</a>
+                    <a href="forgot-password.html" style="color: #c9a227; text-decoration: none;">Forgot Password?</a>
                 </p>
                 <p style="color: #bfbfbf; font-size: 14px; margin-top: 10px;">
                     Don't have an account? 
@@ -95,6 +95,77 @@ function createParticles() {
         particlesContainer.appendChild(particle);
     }
 }
+
+// Show notification function
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#c9a227'};
+        color: white;
+        border-radius: 5px;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Handle login form submission
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const remember = document.getElementById('remember').checked;
+    
+    // Get stored users from localStorage
+    const users = JSON.parse(localStorage.getItem('autocare_users') || '[]');
+    
+    // Find user by email
+    const user = users.find(u => u.email === email);
+    
+    if (!user) {
+        showNotification('No account found with this email address', 'error');
+        return;
+    }
+    
+    if (user.password !== password) {
+        showNotification('Incorrect password', 'error');
+        return;
+    }
+    
+    // Login successful
+    showNotification('Login successful! Redirecting...', 'success');
+    
+    // Store current user session
+    const session = {
+        email: user.email,
+        name: user.name,
+        timestamp: new Date().toISOString(),
+        remember: remember
+    };
+    
+    if (remember) {
+        localStorage.setItem('autocare_session', JSON.stringify(session));
+    } else {
+        sessionStorage.setItem('autocare_session', JSON.stringify(session));
+    }
+    
+    // Redirect to dashboard after delay
+    setTimeout(() => {
+        window.location.href = 'user-dashboard.html';
+    }, 2000);
+});
 
 // Smooth page transitions
 document.addEventListener('DOMContentLoaded', function() {
