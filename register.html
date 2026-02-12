@@ -49,10 +49,10 @@
 
     <div>
         <div class="form-container">
-            <form id="registerForm">
+            <form>
                 <div class="form-group">
-                    <label for="fullname">FULL NAME</label>
-                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                    <label for="username">USERNAME</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
                 </div>
                 
                 <div class="form-group">
@@ -63,6 +63,26 @@
                 <div class="form-group">
                     <label for="phone">PHONE NUMBER</label>
                     <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">ADDRESS</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profile_picture">PROFILE PICTURE</label>
+                    <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">GENDER</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 
                 <div class="form-group">
@@ -107,91 +127,6 @@ function createParticles() {
         particlesContainer.appendChild(particle);
     }
 }
-
-// Show notification function
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 25px;
-        background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#c9a227'};
-        color: white;
-        border-radius: 5px;
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    `;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Handle registration form submission
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const fullname = document.getElementById('fullname').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-    const terms = document.getElementById('terms').checked;
-    
-    // Validate form
-    if (!terms) {
-        showNotification('Please accept the Terms of Service and Privacy Policy', 'error');
-        return;
-    }
-    
-    if (password.length < 6) {
-        showNotification('Password must be at least 6 characters long', 'error');
-        return;
-    }
-    
-    if (password !== confirmPassword) {
-        showNotification('Passwords do not match', 'error');
-        return;
-    }
-    
-    // Get existing users from localStorage
-    const users = JSON.parse(localStorage.getItem('autocare_users') || '[]');
-    
-    // Check if email already exists
-    if (users.find(u => u.email === email)) {
-        showNotification('An account with this email already exists', 'error');
-        return;
-    }
-    
-    // Create new user
-    const newUser = {
-        name: fullname,
-        email: email,
-        phone: phone,
-        password: password,
-        createdAt: new Date().toISOString()
-    };
-    
-    // Save user to localStorage
-    users.push(newUser);
-    localStorage.setItem('autocare_users', JSON.stringify(users));
-    
-    // Show success message
-    showNotification('Account created successfully! Redirecting to login...', 'success');
-    
-    // Clear form
-    document.getElementById('registerForm').reset();
-    
-    // Redirect to login after delay
-    setTimeout(() => {
-        window.location.href = 'login.html';
-    }, 2000);
-});
 
 // Smooth page transitions
 document.addEventListener('DOMContentLoaded', function() {
