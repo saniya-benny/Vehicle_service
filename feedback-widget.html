@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Widget</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: #0c0c0c;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0c0c0c 0%, #1a1a1a 50%, #0c0c0c 100%);
+            z-index: -2;
+        }
+
+        .feedback-widget {
+            background: rgba(12, 12, 12, 0.95);
+            border: 1px solid #c9a227;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(201, 162, 39, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .feedback-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #c9a227, transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .widget-title {
+            font-size: 28px;
+            color: #c9a227;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .widget-subtitle {
+            color: #bfbfbf;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .rating-section {
+            margin-bottom: 30px;
+        }
+
+        .rating-label {
+            display: block;
+            color: #c9a227;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            font-size: 32px;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .star:hover {
+            color: #c9a227;
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+        }
+
+        .star.active {
+            color: #c9a227;
+            animation: starPulse 0.3s ease;
+            text-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+        }
+
+        @keyframes starPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .rating-text {
+            text-align: center;
+            color: #bfbfbf;
+            font-size: 14px;
+            margin-top: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: #c9a227;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #c9a227;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #666;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .feedback-type {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .type-option {
+            padding: 10px 15px;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid #c9a227;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 12px;
+            color: #bfbfbf;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .type-option:hover {
+            background: rgba(201, 162, 39, 0.2);
+            color: #c9a227;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 162, 39, 0.3);
+        }
+
+        .type-option.selected {
+            background: #c9a227;
+            color: #0c0c0c;
+            border-color: #c9a227;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #c9a227;
+            color: #0c0c0c;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.5);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid #c9a227;
+            border-radius: 10px;
+            color: #c9a227;
+            margin-top: 20px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feedback-widget {
+                padding: 30px 20px;
+            }
+            
+            .widget-title {
+                font-size: 24px;
+            }
+            
+            .star {
+                font-size: 28px;
+            }
+            
+            .feedback-type {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-widget">
+        <div class="widget-header">
+            <h2 class="widget-title">Share Your Feedback</h2>
+            <p class="widget-subtitle">Help us improve your experience</p>
+        </div>
+
+        <form id="feedbackForm">
+            <div class="rating-section">
+                <label class="rating-label">How would you rate your experience?</label>
+                <div class="star-rating" id="starRating">
+                    <i class="fas fa-star star" data-rating="1"></i>
+                    <i class="fas fa-star star" data-rating="2"></i>
+                    <i class="fas fa-star star" data-rating="3"></i>
+                    <i class="fas fa-star star" data-rating="4"></i>
+                    <i class="fas fa-star star" data-rating="5"></i>
+                </div>
+                <div class="rating-text" id="ratingText">Click to rate</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Feedback Type</label>
+                <div class="feedback-type">
+                    <div class="type-option" data-type="general">General</div>
+                    <div class="type-option" data-type="bug">Bug Report</div>
+                    <div class="type-option" data-type="feature">Feature Request</div>
+                    <div class="type-option" data-type="complaint">Complaint</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="name">Your Name</label>
+                <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="message">Your Feedback</label>
+                <textarea id="message" class="form-textarea" placeholder="Tell us more about your experience..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle" style="font-size: 24px; margin-bottom: 10px;"></i>
+            <h3>Thank you for your feedback!</h3>
+            <p>We appreciate your input and will review it carefully.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedRating = 0;
+        let selectedType = '';
+
+        const ratingTexts = {
+            1: 'Poor - We need to improve',
+            2: 'Fair - Could be better',
+            3: 'Good - Almost there',
+            4: 'Very Good - Nice work',
+            5: 'Excellent - Outstanding!'
+        };
+
+        // Star rating functionality
+        const stars = document.querySelectorAll('.star');
+        const ratingText = document.getElementById('ratingText');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                updateStars();
+                updateRatingText();
+            });
+
+            star.addEventListener('mouseenter', function() {
+                const hoverRating = parseInt(this.dataset.rating);
+                highlightStars(hoverRating);
+                ratingText.textContent = ratingTexts[hoverRating];
+            });
+        });
+
+        document.getElementById('starRating').addEventListener('mouseleave', function() {
+            updateStars();
+            updateRatingText();
+        });
+
+        function updateStars() {
+            stars.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function highlightStars(rating) {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function updateRatingText() {
+            if (selectedRating > 0) {
+                ratingText.textContent = ratingTexts[selectedRating];
+            } else {
+                ratingText.textContent = 'Click to rate';
+            }
+        }
+
+        // Feedback type selection
+        const typeOptions = document.querySelectorAll('.type-option');
+        typeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                typeOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedType = this.dataset.type;
+            });
+        });
+
+        // Form submission
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (selectedRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            if (selectedType === '') {
+                alert('Please select a feedback type');
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                rating: selectedRating,
+                type: selectedType,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            console.log('Feedback submitted:', formData);
+
+            // Show success message
+            document.getElementById('feedbackForm').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                document.getElementById('feedbackForm').reset();
+                document.getElementById('feedbackForm').style.display = 'block';
+                document.getElementById('successMessage').classList.remove('show');
+                selectedRating = 0;
+                selectedType = '';
+                updateStars();
+                updateRatingText();
+                typeOptions.forEach(opt => opt.classList.remove('selected'));
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
