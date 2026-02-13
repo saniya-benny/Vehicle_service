@@ -75,17 +75,7 @@
                     </select>
                 </div>
 
-                <div class="filter-group">
-                    <label class="filter-label">MINIMUM RATING</label>
-                    <select class="filter-select" id="ratingFilter">
-                        <option value="">All Ratings</option>
-                        <option value="4.5">4.5+ Stars</option>
-                        <option value="4">4+ Stars</option>
-                        <option value="3.5">3.5+ Stars</option>
-                        <option value="3">3+ Stars</option>
-                    </select>
-                </div>
-
+                
                 <div class="filter-group">
                     <label class="filter-label">PRICE RANGE</label>
                     <select class="filter-select" id="priceFilter">
@@ -207,7 +197,6 @@ const workshops = [
 function searchWorkshops() {
     const locationInput = document.getElementById("location").value.toLowerCase();
     const serviceFilter = document.getElementById("serviceFilter").value;
-    const ratingFilter = parseFloat(document.getElementById("ratingFilter").value) || 0;
     const priceFilter = document.getElementById("priceFilter").value;
     const navSearch = document.getElementById("navSearch").value.toLowerCase();
 
@@ -222,7 +211,6 @@ function searchWorkshops() {
             const matchLocation = !locationInput || workshop.location.toLowerCase().includes(locationInput);
             const matchNavSearch = !navSearch || workshop.name.toLowerCase().includes(navSearch) || workshop.location.toLowerCase().includes(navSearch);
             const matchService = !serviceFilter || workshop.services.includes(serviceFilter);
-            const matchRating = workshop.rating >= ratingFilter;
             
             let matchPrice = true;
             if (priceFilter === '0-30') matchPrice = workshop.price < 30;
@@ -230,7 +218,7 @@ function searchWorkshops() {
             else if (priceFilter === '50-100') matchPrice = workshop.price >= 50 && workshop.price <= 100;
             else if (priceFilter === '100+') matchPrice = workshop.price > 100;
 
-            return matchLocation && matchNavSearch && matchService && matchRating && matchPrice;
+            return matchLocation && matchNavSearch && matchService && matchPrice;
         });
 
         if (filtered.length === 0) {

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+    <form method="POST" action="/submit-contact">
+        <div>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        
+        <div>
+            <label for="service_type">Service Type:</label>
+            <select id="service_type" name="service_type">
+                <option value="">Select Service</option>
+                <option value="oil_change">Oil Change</option>
+                <option value="engine_repair">Engine Repair</option>
+                <option value="brake_service">Brake Service</option>
+                <option value="ac_service">AC Service</option>
+                <option value="tire_service">Tire Service</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="preferred_date">Preferred Date:</label>
+            <input type="date" id="preferred_date" name="preferred_date">
+        </div>
+        
+        <div>
+            <label for="preferred_time">Preferred Time:</label>
+            <input type="time" id="preferred_time" name="preferred_time">
+        </div>
+        
+        <div>
+            <label for="urgency">Urgency Level:</label>
+            <input type="radio" id="urgency_low" name="urgency" value="low">
+            <label for="urgency_low">Low</label>
+            
+            <input type="radio" id="urgency_medium" name="urgency" value="medium">
+            <label for="urgency_medium">Medium</label>
+            
+            <input type="radio" id="urgency_high" name="urgency" value="high">
+            <label for="urgency_high">High</label>
+        </div>
+        
+        <div>
+            <label for="vehicle_make">Vehicle Make:</label>
+            <input type="text" id="vehicle_make" name="vehicle_make">
+        </div>
+        
+        <div>
+            <label for="vehicle_model">Vehicle Model:</label>
+            <input type="text" id="vehicle_model" name="vehicle_model">
+        </div>
+        
+        <div>
+            <label for="vehicle_year">Vehicle Year:</label>
+            <input type="number" id="vehicle_year" name="vehicle_year" min="1900" max="2024">
+        </div>
+        
+        <div>
+            <label for="vehicle_mileage">Vehicle Mileage:</label>
+            <input type="number" id="vehicle_mileage" name="vehicle_mileage">
+        </div>
+        
+        <div>
+            <label for="consent">
+                <input type="checkbox" id="consent" name="consent" value="yes">
+                I agree to be contacted regarding my inquiry
+            </label>
+        </div>
+        
+        <div>
+            <label for="newsletter">
+                <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                Subscribe to newsletter for updates and promotions
+            </label>
+        </div>
+        
+        <button type="submit">Submit Contact Form</button>
+        <button type="reset">Reset Form</button>
+    </form>
+</body>
+</html>
