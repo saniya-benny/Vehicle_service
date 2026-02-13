@@ -13,6 +13,133 @@
 
 <!-- Custom CSS -->
 <link rel="stylesheet" href="styles.css">
+
+<style>
+/* Enhanced Profile Styles */
+.edit-mode-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(201, 162, 39, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.edit-mode-header i {
+    font-size: 24px;
+    color: #c9a227;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.edit-mode-subtitle {
+    color: #bfbfbf;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.edit-input {
+    background: #0c0c0c;
+    border: 1px solid rgba(201, 162, 39, 0.4);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.edit-input:focus {
+    outline: none;
+    border-color: #c9a227;
+    background: #0c0c0c;
+    box-shadow: 0 0 15px rgba(201, 162, 39, 0.3);
+    transform: translateY(-2px);
+}
+
+.edit-input::placeholder {
+    color: #666;
+}
+
+select.edit-input {
+    cursor: pointer;
+    background: #0c0c0c;
+}
+
+select.edit-input option {
+    background: #0c0c0c;
+    color: white;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    flex: 1;
+}
+
+.btn-save:hover {
+    background: linear-gradient(135deg, #218838, #1ea085);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+.btn-cancel {
+    background: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    flex: 1;
+}
+
+.btn-cancel:hover {
+    background: #dc3545;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #c9a227, #8a7d1f);
+    color: #0c0c0c;
+    box-shadow: 0 5px 15px rgba(201, 162, 39, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(201, 162, 39, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #c9a227;
+    border: 1px solid #c9a227;
+}
+
+.btn-secondary:hover {
+    background: #c9a227;
+    color: #0c0c0c;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(201, 162, 39, 0.3);
+}
+
+/* Animation for mode switching */
+.mode-transition {
+    animation: modeSwitch 0.4s ease;
+}
+
+@keyframes modeSwitch {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+}
+</style>
 </head>
 <body>
 
@@ -60,32 +187,100 @@
             </div>
 
             <!-- Profile Information -->
-            <div class="form-group">
-                <label>NAME</label>
-                <input type="text" value="John Doe" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+            <div id="viewMode">
+                <div class="form-group">
+                    <label>NAME</label>
+                    <input type="text" id="viewName" value="John Doe" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                </div>
+
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" id="viewEmail" value="john.doe@example.com" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                </div>
+
+                <div class="form-group">
+                    <label>PHONE NUMBER</label>
+                    <input type="tel" id="viewPhone" value="+1 234 567 8900" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                </div>
+
+                <div class="form-group">
+                    <label>VEHICLE TYPE</label>
+                    <input type="text" id="viewVehicleType" value="Sedan" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                </div>
+
+                <div class="form-group">
+                    <label>VEHICLE MODEL</label>
+                    <input type="text" id="viewVehicleModel" value="Toyota Camry" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                </div>
+
+                <div class="form-group">
+                    <label>REGISTRATION NUMBER</label>
+                    <input type="text" id="viewRegistrationNumber" value="ABC-1234" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>EMAIL ADDRESS</label>
-                <input type="email" value="john.doe@example.com" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
-            </div>
+            <!-- Edit Mode Form -->
+            <div id="editMode" style="display: none;">
+                <div class="edit-mode-header">
+                    <i class="fas fa-edit"></i> Edit Profile
+                    <div class="edit-mode-subtitle">Update your personal information</div>
+                </div>
 
-            <div class="form-group">
-                <label>PHONE NUMBER</label>
-                <input type="tel" value="+1 234 567 8900" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
-            </div>
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" id="editName" placeholder="Enter your full name" class="edit-input">
+                </div>
 
-            <div class="form-group">
-                <label>VEHICLE REGISTERED</label>
-                <input type="text" value="Toyota Camry 2021" readonly style="background: rgba(255, 255, 255, 0.05); cursor: default;">
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" id="editEmail" placeholder="Enter your email" class="edit-input">
+                </div>
+
+                <div class="form-group">
+                    <label>PHONE NUMBER</label>
+                    <input type="tel" id="editPhone" placeholder="Enter your phone number" class="edit-input">
+                </div>
+
+                <div class="form-group">
+                    <label>VEHICLE TYPE</label>
+                    <select id="editVehicleType" class="edit-input">
+                        <option value="">Select vehicle type</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Truck">Truck</option>
+                        <option value="Motorcycle">Motorcycle</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>VEHICLE MODEL</label>
+                    <input type="text" id="editVehicleModel" placeholder="Enter your vehicle model" class="edit-input">
+                </div>
+
+                <div class="form-group">
+                    <label>REGISTRATION NUMBER</label>
+                    <input type="text" id="editRegistrationNumber" placeholder="Enter registration number" class="edit-input">
+                </div>
+
+                <!-- Edit Mode Actions -->
+                <div class="edit-actions">
+                    <button class="btn btn-save" onclick="saveProfile()">
+                        <i class="fas fa-save"></i> SAVE CHANGES
+                    </button>
+                    <button class="btn btn-cancel" onclick="cancelEdit()">
+                        <i class="fas fa-times"></i> CANCEL
+                    </button>
+                </div>
             </div>
 
             <!-- Action Buttons -->
-            <div style="display: flex; gap: 15px; margin-top: 30px;">
-                <button class="btn" onclick="editProfile()" style="flex: 1;">
+            <div id="viewModeButtons" style="display: flex; gap: 15px; margin-top: 30px;">
+                <button class="btn btn-primary" onclick="enableEditMode()" style="flex: 1;">
                     <i class="fas fa-edit"></i> EDIT PROFILE
                 </button>
-                <button class="btn" onclick="goHome()" style="flex: 1; background: transparent; border: 1px solid #c9a227; color: #c9a227;">
+                <button class="btn btn-secondary" onclick="goHome()" style="flex: 1;">
                     <i class="fas fa-home"></i> BACK TO HOME
                 </button>
             </div>
@@ -134,9 +329,142 @@ function showNotification(message, type = 'success') {
     }, 3000);
 }
 
-// Edit profile
+// Profile data management
+let originalData = {};
+let isEditMode = false;
+
+// Load profile data from localStorage
+function loadProfileData() {
+    const savedData = localStorage.getItem('userProfile');
+    if (savedData) {
+        const data = JSON.parse(savedData);
+        document.getElementById('viewName').value = data.name || 'John Doe';
+        document.getElementById('viewEmail').value = data.email || 'john.doe@example.com';
+        document.getElementById('viewPhone').value = data.phone || '+1 234 567 8900';
+        document.getElementById('viewVehicleType').value = data.vehicleType || 'Sedan';
+        document.getElementById('viewVehicleModel').value = data.vehicleModel || 'Toyota Camry';
+        document.getElementById('viewRegistrationNumber').value = data.registrationNumber || 'ABC-1234';
+        
+        // Also populate edit fields
+        document.getElementById('editName').value = data.name || '';
+        document.getElementById('editEmail').value = data.email || '';
+        document.getElementById('editPhone').value = data.phone || '';
+        document.getElementById('editVehicleType').value = data.vehicleType || '';
+        document.getElementById('editVehicleModel').value = data.vehicleModel || '';
+        document.getElementById('editRegistrationNumber').value = data.registrationNumber || '';
+    }
+    
+    // Store original data for cancel functionality
+    originalData = {
+        name: document.getElementById('viewName').value,
+        email: document.getElementById('viewEmail').value,
+        phone: document.getElementById('viewPhone').value,
+        vehicleType: document.getElementById('viewVehicleType').value,
+        vehicleModel: document.getElementById('viewVehicleModel').value,
+        registrationNumber: document.getElementById('viewRegistrationNumber').value
+    };
+}
+
+// Enable edit mode
+function enableEditMode() {
+    isEditMode = true;
+    
+    // Add transition class
+    document.querySelector('.form-container').classList.add('mode-transition');
+    
+    // Copy current values to edit fields
+    document.getElementById('editName').value = document.getElementById('viewName').value;
+    document.getElementById('editEmail').value = document.getElementById('viewEmail').value;
+    document.getElementById('editPhone').value = document.getElementById('viewPhone').value;
+    document.getElementById('editVehicleType').value = document.getElementById('viewVehicleType').value;
+    document.getElementById('editVehicleModel').value = document.getElementById('viewVehicleModel').value;
+    document.getElementById('editRegistrationNumber').value = document.getElementById('viewRegistrationNumber').value;
+    
+    // Switch views
+    setTimeout(() => {
+        document.getElementById('viewMode').style.display = 'none';
+        document.getElementById('viewModeButtons').style.display = 'none';
+        document.getElementById('editMode').style.display = 'block';
+        document.querySelector('.form-container').classList.remove('mode-transition');
+    }, 200);
+    
+    showNotification('Edit mode enabled');
+}
+
+// Save profile
+function saveProfile() {
+    const profileData = {
+        name: document.getElementById('editName').value,
+        email: document.getElementById('editEmail').value,
+        phone: document.getElementById('editPhone').value,
+        vehicleType: document.getElementById('editVehicleType').value,
+        vehicleModel: document.getElementById('editVehicleModel').value,
+        registrationNumber: document.getElementById('editRegistrationNumber').value
+    };
+    
+    // Validate required fields
+    if (!profileData.name || !profileData.email) {
+        showNotification('Please fill in required fields', 'error');
+        return;
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('userProfile', JSON.stringify(profileData));
+    
+    // Update view mode fields
+    document.getElementById('viewName').value = profileData.name;
+    document.getElementById('viewEmail').value = profileData.email;
+    document.getElementById('viewPhone').value = profileData.phone;
+    document.getElementById('viewVehicleType').value = profileData.vehicleType;
+    document.getElementById('viewVehicleModel').value = profileData.vehicleModel;
+    document.getElementById('viewRegistrationNumber').value = profileData.registrationNumber;
+    
+    // Update original data
+    originalData = {...profileData};
+    
+    // Switch back to view mode
+    setTimeout(() => {
+        document.querySelector('.form-container').classList.add('mode-transition');
+        
+        setTimeout(() => {
+            document.getElementById('editMode').style.display = 'none';
+            document.getElementById('viewMode').style.display = 'block';
+            document.getElementById('viewModeButtons').style.display = 'flex';
+            document.querySelector('.form-container').classList.remove('mode-transition');
+        }, 200);
+        
+        showNotification('Profile saved successfully!');
+        isEditMode = false;
+    }, 500);
+}
+
+// Cancel edit
+function cancelEdit() {
+    // Restore original values to edit fields
+    document.getElementById('editName').value = originalData.name;
+    document.getElementById('editEmail').value = originalData.email;
+    document.getElementById('editPhone').value = originalData.phone;
+    document.getElementById('editVehicleType').value = originalData.vehicleType;
+    document.getElementById('editVehicleModel').value = originalData.vehicleModel;
+    document.getElementById('editRegistrationNumber').value = originalData.registrationNumber;
+    
+    // Switch back to view mode
+    document.querySelector('.form-container').classList.add('mode-transition');
+    
+    setTimeout(() => {
+        document.getElementById('editMode').style.display = 'none';
+        document.getElementById('viewMode').style.display = 'block';
+        document.getElementById('viewModeButtons').style.display = 'flex';
+        document.querySelector('.form-container').classList.remove('mode-transition');
+    }, 200);
+    
+    showNotification('Changes cancelled');
+    isEditMode = false;
+}
+
+// Edit profile (legacy function - replaced)
 function editProfile() {
-    showNotification('Edit profile feature coming soon!');
+    enableEditMode();
 }
 
 // Go home
@@ -170,6 +498,9 @@ function searchWorkshops() {
 
 // Smooth page transitions
 document.addEventListener('DOMContentLoaded', function() {
+    // Load profile data
+    loadProfileData();
+    
     // Add click handlers to navigation links
     const navLinks = document.querySelectorAll('.nav-links a');
     
