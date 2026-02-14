@@ -172,9 +172,9 @@ document.getElementById('vehicleForm').addEventListener('submit', function(e) {
     // Show success message
     showNotification('Vehicle registered successfully!');
     
-    // Reset form after delay
+    // Redirect to your vehicles page after delay
     setTimeout(() => {
-        this.reset();
+        window.location.href = 'your-vehicles.html';
     }, 2000);
 });
 
