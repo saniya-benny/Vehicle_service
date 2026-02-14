@@ -16,6 +16,67 @@
 
 <style>
 /* Workshop List Specific Styles */
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-label {
+    display: block;
+    color: #c9a227;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #c9a227;
+    color: #bfbfbf;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+.filter-checkboxes {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #c9a227;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.filter-checkboxes label:hover {
+    color: #c9a227;
+}
+
+.filter-checkboxes input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #c9a227;
+}
+
+.filter-label i {
+    margin-right: 8px;
+}
+
+.filter-label i.fa-chevron-down {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.filter-label i.fa-chevron-up {
+    transform: rotate(180deg);
+}
+
 .workshop-list-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -237,16 +298,94 @@
 <div class="particles" id="particles"></div>
 
 <div class="container page-content" id="pageContent">
-
-    <div style="grid-column: 1 / -1;">
-        <div class="section-title">WORKSHOP LIST</div>
-        <div class="divider"></div>
-        <div class="text">
-            Browse our network of certified vehicle service workshops and find the perfect match for your needs.
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start;">
+        <!-- Left Sidebar Filters -->
+        <div style="background: rgba(201, 162, 39, 0.05); border: 2px solid #c9a227; border-radius: 15px; padding: 25px; height: fit-content;">
+            <div class="section-title" style="font-size: 18px; margin-bottom: 20px;">FILTERS</div>
+            
+            <!-- Rating Filter -->
+            <div class="filter-group">
+                <label class="filter-label" onclick="toggleFilter('rating')" style="cursor: pointer;">
+                    <i class="fas fa-star"></i> RATING <i class="fas fa-chevron-down" id="rating-chevron"></i>
+                </label>
+                <div class="filter-checkboxes" id="rating-filters" style="display: none;">
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="4.5" onchange="filterWorkshops()"> 4.5+ Stars
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="4" onchange="filterWorkshops()"> 4+ Stars
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="3.5" onchange="filterWorkshops()"> 3.5+ Stars
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="3" onchange="filterWorkshops()"> 3+ Stars
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Service Filter -->
+            <div class="filter-group" style="margin-top: 20px;">
+                <label class="filter-label" onclick="toggleFilter('service')" style="cursor: pointer;">
+                    <i class="fas fa-wrench"></i> SERVICES <i class="fas fa-chevron-down" id="service-chevron"></i>
+                </label>
+                <div class="filter-checkboxes" id="service-filters" style="display: none;">
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Oil Change" onchange="filterWorkshops()"> Oil Change
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Engine Repair" onchange="filterWorkshops()"> Engine Repair
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="AC Service" onchange="filterWorkshops()"> AC Service
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Brake Service" onchange="filterWorkshops()"> Brake Service
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Battery Service" onchange="filterWorkshops()"> Battery Service
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Tire Service" onchange="filterWorkshops()"> Tire Service
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Location Filter -->
+            <div class="filter-group" style="margin-top: 20px;">
+                <label class="filter-label" onclick="toggleFilter('location')" style="cursor: pointer;">
+                    <i class="fas fa-map-marker-alt"></i> LOCATION <i class="fas fa-chevron-down" id="location-chevron"></i>
+                </label>
+                <div class="filter-checkboxes" id="location-filters" style="display: none;">
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Kochi" onchange="filterWorkshops()"> Kochi
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Ernakulam" onchange="filterWorkshops()"> Ernakulam
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                        <input type="checkbox" value="Trivandrum" onchange="filterWorkshops()"> Trivandrum
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <button class="btn" onclick="resetFilters()" style="width: 100%; margin-top: 20px; background: transparent; border: 1px solid #c9a227; color: #c9a227;">
+                <i class="fas fa-redo"></i> RESET FILTERS
+            </button>
         </div>
-    </div>
 
-    <!-- Workshop List -->
+        <!-- Right Content Area -->
+        <div>
+            <div style="grid-column: 1 / -1;">
+                <div class="section-title">WORKSHOP LIST</div>
+                <div class="divider"></div>
+                <div class="text">
+                    Browse our network of certified vehicle service workshops and find the perfect match for your needs.
+                </div>
+            </div>
+
+            <!-- Workshop List -->
     <div class="workshop-list-container">
         <!-- Workshop Card 1 -->
         <div class="workshop-card">
@@ -518,6 +657,93 @@ function viewDetails(workshopId) {
     setTimeout(() => {
         window.location.href = `workshop-details.html?id=${workshopId}`;
     }, 1000);
+}
+
+// Toggle filter visibility
+function toggleFilter(filterType) {
+    const filterId = filterType + '-filters';
+    const chevronId = filterType + '-chevron';
+    const filterDiv = document.getElementById(filterId);
+    const chevron = document.getElementById(chevronId);
+    
+    if (filterDiv.style.display === 'none') {
+        filterDiv.style.display = 'block';
+        chevron.className = 'fas fa-chevron-up';
+    } else {
+        filterDiv.style.display = 'none';
+        chevron.className = 'fas fa-chevron-down';
+    }
+}
+
+// Filter workshops
+function filterWorkshops() {
+    // Get checked rating checkboxes
+    const ratingCheckboxes = document.querySelectorAll('#rating-filters input[type="checkbox"]:checked');
+    const ratingFilters = Array.from(ratingCheckboxes).map(cb => parseFloat(cb.value));
+    
+    // Get checked service checkboxes
+    const serviceCheckboxes = document.querySelectorAll('#service-filters input[type="checkbox"]:checked');
+    const serviceFilters = Array.from(serviceCheckboxes).map(cb => cb.value);
+    
+    // Get checked location checkboxes
+    const locationCheckboxes = document.querySelectorAll('#location-filters input[type="checkbox"]:checked');
+    const locationFilters = Array.from(locationCheckboxes).map(cb => cb.value);
+    
+    const workshopCards = document.querySelectorAll('.workshop-card');
+    
+    workshopCards.forEach(card => {
+        let showCard = true;
+        
+        // Get workshop data from card (in real app, this would come from data attributes)
+        const workshopName = card.querySelector('.workshop-name').textContent;
+        const location = card.querySelector('.info-item span').textContent;
+        const serviceTags = Array.from(card.querySelectorAll('.service-tag')).map(tag => tag.textContent);
+        const ratingText = card.querySelector('.workshop-rating span:last-child').textContent;
+        const rating = parseFloat(ratingText.match(/[\d.]+/)[0]);
+        
+        // Apply rating filters (if any checked)
+        if (ratingFilters.length > 0 && !ratingFilters.some(filter => rating >= filter)) {
+            showCard = false;
+        }
+        
+        // Apply service filters (if any checked)
+        if (serviceFilters.length > 0 && !serviceFilters.some(filter => serviceTags.includes(filter))) {
+            showCard = false;
+        }
+        
+        // Apply location filters (if any checked)
+        if (locationFilters.length > 0 && !locationFilters.some(filter => location.includes(filter))) {
+            showCard = false;
+        }
+        
+        // Show/hide card
+        card.style.display = showCard ? 'block' : 'none';
+    });
+    
+    showNotification('Filters applied!');
+}
+
+// Reset filters
+function resetFilters() {
+    // Uncheck all rating checkboxes
+    const ratingCheckboxes = document.querySelectorAll('#rating-filters input[type="checkbox"]');
+    ratingCheckboxes.forEach(checkbox => checkbox.checked = false);
+    
+    // Uncheck all service checkboxes
+    const serviceCheckboxes = document.querySelectorAll('#service-filters input[type="checkbox"]');
+    serviceCheckboxes.forEach(checkbox => checkbox.checked = false);
+    
+    // Uncheck all location checkboxes
+    const locationCheckboxes = document.querySelectorAll('#location-filters input[type="checkbox"]');
+    locationCheckboxes.forEach(checkbox => checkbox.checked = false);
+    
+    // Show all workshop cards
+    const workshopCards = document.querySelectorAll('.workshop-card');
+    workshopCards.forEach(card => {
+        card.style.display = 'block';
+    });
+    
+    showNotification('Filters reset!');
 }
 
 // Book service
