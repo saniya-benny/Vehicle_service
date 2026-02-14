@@ -39,7 +39,7 @@
 
 .booking-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(201, 162, 39, 0.3);
@@ -186,18 +186,145 @@
     background: rgba(201, 162, 39, 0.1);
 }
 
-.pickup-field {
+.pickup-extra {
+    margin-top: 20px;
     max-height: 0;
     overflow: hidden;
     opacity: 0;
     transition: all 0.4s ease;
-    margin-top: 0;
+    transform: translateY(-20px);
 }
 
-.pickup-field.show {
-    max-height: 200px;
+#pickupCheck:checked ~ .pickup-extra {
+    max-height: 500px;
     opacity: 1;
-    margin-top: 20px;
+    transform: translateY(0);
+}
+
+.pickup-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.pickup-container .form-input {
+    flex: 1;
+}
+
+.location-btn {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #c9a227, #8a7d1f);
+    border: none;
+    border-radius: 12px;
+    color: #0c0c0c;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Arial, sans-serif;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+}
+
+.location-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201, 162, 39, 0.4);
+    background: linear-gradient(135deg, #d4b237, #9a8d2a);
+}
+
+.location-btn:active {
+    transform: translateY(-1px);
+}
+
+.location-btn i {
+    font-size: 16px;
+}
+
+.price-summary {
+    background: rgba(201, 162, 39, 0.08);
+    border: 2px solid rgba(201, 162, 39, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+    box-shadow: 
+        0 8px 25px rgba(201, 162, 39, 0.15),
+        inset 0 1px 0 rgba(201, 162, 39, 0.1);
+}
+
+.price-summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #c9a227;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.price-section {
+    margin-bottom: 20px;
+}
+
+.price-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #c9a227;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    color: #bfbfbf;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.price-item.service {
+    padding-left: 20px;
+    position: relative;
+}
+
+.price-item.service::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #c9a227;
+}
+
+.price-value {
+    font-weight: 600;
+    color: white;
+}
+
+.price-divider {
+    height: 1px;
+    background: rgba(201, 162, 39, 0.3);
+    margin: 15px 0;
+}
+
+.grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #c9a227;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.grand-total .price-value {
+    font-size: 24px;
+    color: #c9a227;
 }
 
 .submit-btn {
@@ -250,106 +377,6 @@
     transform: translateY(-1px);
 }
 
-.error-message {
-    color: #dc3545;
-    font-size: 12px;
-    margin-top: 5px;
-    display: none;
-    font-family: Arial, sans-serif;
-}
-
-.error-message.show {
-    display: block;
-    animation: shake 0.5s ease;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-.success-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 10000;
-}
-
-.success-modal.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.success-content {
-    background: linear-gradient(135deg, rgba(201, 162, 39, 0.1), rgba(0, 0, 0, 0.8));
-    border: 2px solid #c9a227;
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    max-width: 400px;
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-    box-shadow: 0 0 50px rgba(201, 162, 39, 0.5);
-}
-
-.success-modal.show .success-content {
-    transform: scale(1);
-}
-
-.success-icon {
-    font-size: 60px;
-    color: #28a745;
-    margin-bottom: 20px;
-    animation: successPulse 1s ease infinite;
-}
-
-@keyframes successPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-.success-title {
-    font-size: 28px;
-    color: #c9a227;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.success-message {
-    color: #bfbfbf;
-    margin-bottom: 25px;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
-
-.success-btn {
-    background: linear-gradient(135deg, #c9a227, #8a7d1f);
-    color: #0c0c0c;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.success-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(201, 162, 39, 0.4);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .booking-container {
@@ -364,9 +391,14 @@
         font-size: 32px;
     }
     
-    .radio-group {
+    .pickup-container {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .location-btn {
+        width: 100%;
+        justify-content: center;
     }
     
     .form-input,
@@ -411,53 +443,41 @@
         </div>
 
         <form id="bookingForm">
-            <!-- Full Name -->
-            <div class="form-group">
-                <label class="form-label" for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your full name" required>
-                <div class="error-message" id="fullNameError">Please enter your full name</div>
-            </div>
-
-            <!-- Phone Number -->
-            <div class="form-group">
-                <label class="form-label" for="phoneNumber">Phone Number</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" class="form-input" placeholder="+1 234 567 8900" required>
-                <div class="error-message" id="phoneNumberError">Please enter a valid phone number</div>
-            </div>
-
             <!-- Email -->
             <div class="form-group">
                 <label class="form-label" for="email">Email Address</label>
                 <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
-                <div class="error-message" id="emailError">Please enter a valid email address</div>
             </div>
 
             <!-- Address -->
             <div class="form-group">
                 <label class="form-label" for="address">Address</label>
                 <textarea id="address" name="address" class="form-textarea" placeholder="Enter your complete address" required></textarea>
-                <div class="error-message" id="addressError">Please enter your address</div>
             </div>
 
-            <!-- Order Details -->
+            <!-- Service Selection -->
             <div class="form-group">
-                <label class="form-label" for="orderDetails">Order Details</label>
-                <textarea id="orderDetails" name="orderDetails" class="form-textarea" placeholder="Describe the service you need (e.g., oil change, brake service, general inspection)" required></textarea>
-                <div class="error-message" id="orderDetailsError">Please describe your service requirements</div>
+                <label class="form-label" for="service">Select Service</label>
+                <select id="service" name="service" class="form-select" required>
+                    <option value="">Choose a service</option>
+                    <option value="oil-change">Oil Change</option>
+                    <option value="car-wash">Car Wash</option>
+                    <option value="engine-checkup">Engine Checkup</option>
+                    <option value="brake-inspection">Brake Inspection</option>
+                    <option value="full-service">Full Service Package</option>
+                </select>
             </div>
 
             <!-- Booking Date -->
             <div class="form-group">
                 <label class="form-label" for="bookingDate">Booking Date</label>
                 <input type="date" id="bookingDate" name="bookingDate" class="form-input" required>
-                <div class="error-message" id="bookingDateError">Please select a booking date</div>
             </div>
 
             <!-- Booking Time -->
             <div class="form-group">
                 <label class="form-label" for="bookingTime">Booking Time</label>
                 <input type="time" id="bookingTime" name="bookingTime" class="form-input" required>
-                <div class="error-message" id="bookingTimeError">Please select a booking time</div>
             </div>
 
             <!-- Payment Method -->
@@ -469,24 +489,56 @@
                     <option value="upi">UPI</option>
                     <option value="card">Card</option>
                 </select>
-                <div class="error-message" id="paymentMethodError">Please select a payment method</div>
             </div>
 
-            <!-- Pickup Option -->
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="pickupCheckbox" name="pickupCheckbox">
-                    <span class="checkmark"></span>
-                    Pickup
-                </label>
-            </div>
+            <!-- Pickup Service -->
+            <input type="checkbox" id="pickupCheck" name="pickupService" style="display: none;">
+            <label class="checkbox-label" for="pickupCheck">
+                <span class="checkmark"></span>
+                Pickup Service
+            </label>
 
-            <!-- Pickup Location (Conditional Field) -->
-            <div class="pickup-field" id="pickupField">
+            <!-- Pickup Location -->
+            <div class="pickup-extra">
                 <div class="form-group">
-                    <label class="form-label" for="pickupLocation">Pickup Location</label>
-                    <input type="text" id="pickupLocation" name="pickupLocation" class="form-input" placeholder="Enter pickup location">
-                    <div class="error-message" id="pickupLocationError">Please enter pickup location</div>
+                    <label class="form-label" for="pickupLocation">Enter Your Pickup Location</label>
+                    <div class="pickup-container">
+                        <input type="text" id="pickupLocation" name="pickupLocation" class="form-input" placeholder="Enter your pickup address">
+                        <button type="button" class="location-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Use Current Location
+                        </button>
+                    </div>
+                    <input type="hidden" name="user_location" id="userLocation">
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="price-summary">
+                <div class="price-summary-title">Price Summary</div>
+                
+                <div class="price-item">
+                    <span>Selected Service:</span>
+                    <span class="price-value">Service name will appear here</span>
+                </div>
+                
+                <div class="price-divider"></div>
+                
+                <div class="price-item">
+                    <span>Service Cost:</span>
+                    <span class="price-value">₹____</span>
+                </div>
+                
+                <div class="price-item">
+                    <span>Delivery Charges:</span>
+                    <span class="price-value">₹____</span>
+                </div>
+                
+                <div class="price-divider"></div>
+                
+                <div class="grand-total">
+                    <span>Total Amount:</span>
+                    <span class="price-value">₹____</span>
                 </div>
             </div>
 
@@ -498,250 +550,8 @@
     </div>
 </div>
 
-<!-- Success Modal -->
-<div class="success-modal" id="successModal">
-    <div class="success-content">
-        <div class="success-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="success-title">Booking Confirmed!</div>
-        <div class="success-message">
-            Your service appointment has been successfully booked. We'll send you a confirmation email shortly with all the details.
-        </div>
-        <button class="success-btn" onclick="closeSuccessModal()">Got it</button>
-    </div>
-</div>
-
 <!-- Notification -->
 <div class="notification" id="notification"></div>
-
-<script>
-// Particles
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Show notification
-function showNotification(message, type = 'success') {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.className = `notification ${type} show`;
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 3000);
-}
-
-// Search workshops
-function searchWorkshops() {
-    const searchValue = document.getElementById('navSearch').value;
-    if (searchValue.trim()) {
-        showNotification('Searching for workshops...');
-        setTimeout(() => {
-            window.location.href = `search-workshops.html?search=${encodeURIComponent(searchValue)}`;
-        }, 1000);
-    } else {
-        showNotification('Please enter a search term', 'error');
-    }
-}
-
-// Pickup Checkbox Toggle
-const pickupCheckbox = document.getElementById('pickupCheckbox');
-const pickupField = document.getElementById('pickupField');
-const pickupLocationInput = document.getElementById('pickupLocation');
-const checkboxLabel = pickupCheckbox.closest('.checkbox-label');
-
-pickupCheckbox.addEventListener('change', function() {
-    // Update checkbox styling
-    if (this.checked) {
-        checkboxLabel.classList.add('checked');
-        pickupField.classList.add('show');
-        pickupLocationInput.required = true;
-    } else {
-        checkboxLabel.classList.remove('checked');
-        pickupField.classList.remove('show');
-        pickupLocationInput.required = false;
-        pickupLocationInput.value = '';
-    }
-});
-
-// Form Validation
-function validateForm() {
-    let isValid = true;
-    const form = document.getElementById('bookingForm');
-    
-    // Clear all error messages
-    document.querySelectorAll('.error-message').forEach(error => {
-        error.classList.remove('show');
-    });
-    
-    // Validate Full Name
-    const fullName = document.getElementById('fullName').value.trim();
-    if (!fullName) {
-        document.getElementById('fullNameError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Phone Number
-    const phoneNumber = document.getElementById('phoneNumber').value.trim();
-    const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-    if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
-        document.getElementById('phoneNumberError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Email
-    const email = document.getElementById('email').value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
-        document.getElementById('emailError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Address
-    const address = document.getElementById('address').value.trim();
-    if (!address) {
-        document.getElementById('addressError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Order Details
-    const orderDetails = document.getElementById('orderDetails').value.trim();
-    if (!orderDetails) {
-        document.getElementById('orderDetailsError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Booking Date
-    const bookingDate = document.getElementById('bookingDate').value;
-    if (!bookingDate) {
-        document.getElementById('bookingDateError').classList.add('show');
-        isValid = false;
-    } else {
-        const selectedDate = new Date(bookingDate);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        if (selectedDate < today) {
-            document.getElementById('bookingDateError').textContent = 'Please select a future date';
-            document.getElementById('bookingDateError').classList.add('show');
-            isValid = false;
-        }
-    }
-    
-    // Validate Booking Time
-    const bookingTime = document.getElementById('bookingTime').value;
-    if (!bookingTime) {
-        document.getElementById('bookingTimeError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Payment Method
-    const paymentMethod = document.getElementById('paymentMethod').value;
-    if (!paymentMethod) {
-        document.getElementById('paymentMethodError').classList.add('show');
-        isValid = false;
-    }
-    
-    // Validate Pickup Location (if pickup is checked)
-    if (pickupCheckbox.checked) {
-        const pickupLocation = document.getElementById('pickupLocation').value.trim();
-        if (!pickupLocation) {
-            document.getElementById('pickupLocationError').classList.add('show');
-            isValid = false;
-        }
-    }
-    
-    return isValid;
-}
-
-// Form Submission
-document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    if (validateForm()) {
-        // Collect form data
-        const formData = {
-            fullName: document.getElementById('fullName').value,
-            phoneNumber: document.getElementById('phoneNumber').value,
-            email: document.getElementById('email').value,
-            address: document.getElementById('address').value,
-            orderDetails: document.getElementById('orderDetails').value,
-            bookingDate: document.getElementById('bookingDate').value,
-            bookingTime: document.getElementById('bookingTime').value,
-            paymentMethod: document.getElementById('paymentMethod').value,
-            pickup: document.getElementById('pickupCheckbox').checked,
-            pickupLocation: document.getElementById('pickupLocation').value
-        };
-        
-        // Save to localStorage (for demo purposes)
-        localStorage.setItem('bookingData', JSON.stringify(formData));
-        
-        // Show success modal
-        document.getElementById('successModal').classList.add('show');
-        
-        // Reset form
-        this.reset();
-        pickupField.classList.remove('show');
-        checkboxLabel.classList.remove('checked');
-        
-        console.log('Booking Data:', formData);
-    }
-});
-
-// Close Success Modal
-function closeSuccessModal() {
-    document.getElementById('successModal').classList.remove('show');
-    
-    // Redirect to home page after closing modal
-    setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 500);
-}
-
-// Set minimum date to today
-document.getElementById('bookingDate').min = new Date().toISOString().split('T')[0];
-
-// Smooth page transitions
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click handlers to navigation links
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Only apply transition for internal pages
-            if (href && href !== '#' && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
-                e.preventDefault();
-                
-                // Add exit animation
-                document.body.classList.add('page-exit');
-                
-                // Navigate after animation
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 500);
-            }
-        });
-    });
-
-    // Enter key search for navbar
-    document.getElementById('navSearch').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            searchWorkshops();
-        }
-    });
-});
-
-createParticles();
-</script>
 
 </body>
 </html>
