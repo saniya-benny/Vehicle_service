@@ -71,7 +71,7 @@
                 <h4>SEARCH</h4>
                 <p>Find nearby workshops by location or service</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="goToBooking()">
                 <i class="fas fa-calendar-check"></i>
                 <h4>BOOK</h4>
                 <p>Schedule appointments at your convenience</p>
@@ -289,6 +289,14 @@ function viewAllWorkshops() {
     showNotification('Loading all workshops...');
     setTimeout(() => {
         window.location.href = 'search-workshops.html';
+    }, 1000);
+}
+
+// Go to booking
+function goToBooking() {
+    showNotification('Opening booking form...');
+    setTimeout(() => {
+        window.location.href = 'book.html';
     }, 1000);
 }
 
