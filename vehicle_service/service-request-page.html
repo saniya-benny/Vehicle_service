@@ -3,178 +3,792 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Service Request - AutoCare</title>
+<title>Admin Service Requests - AUTOCARE</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 
 <style>
-
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-    background:#0c0c0c;
-    font-family:'Oswald', sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    color:white;
+/* Ensure body doesn't hide content */
+body {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    background: #0a0a0a;
+    color: white;
+    min-height: 100vh;
 }
 
-/* Glass Card */
-.card{
-    width:100%;
-    max-width:600px;
-    padding:50px 40px;
-    background:rgba(201,162,39,0.05);
-    border:1px solid rgba(201,162,39,0.2);
-    border-radius:20px;
-    backdrop-filter:blur(10px);
-    text-align:center;
-    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, #c9a227 0%, #8b7a1a 100%);
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Title */
-.title{
-    font-size:40px;
-    color:#c9a227;
-    font-weight:700;
-    margin-bottom:15px;
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
 }
 
-.divider{
-    width:70px;
-    height:3px;
-    background:#c9a227;
-    margin:0 auto 30px;
+.page-header h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
 }
 
-/* Form */
-.form-group{
-    margin-bottom:20px;
-    text-align:left;
+.page-header .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+    margin-top: 10px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
 }
 
-label{
-    font-size:12px;
-    color:#c9a227;
-    letter-spacing:1px;
-    margin-bottom:6px;
-    display:block;
+/* Stats Bar */
+.stats-bar {
+    background: #1a1a1a;
+    padding: 20px 0;
+    border-bottom: 2px solid #c9a227;
 }
 
-input,select,textarea{
-    width:100%;
-    padding:12px;
-    background:#111;
-    border:1px solid #333;
-    border-radius:10px;
-    color:white;
-    font-family:Arial;
-    transition:0.3s;
+.stats-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-input:focus,select:focus,textarea:focus{
-    outline:none;
-    border-color:#c9a227;
-    box-shadow:0 0 15px rgba(201,162,39,0.4);
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background: rgba(201, 162, 39, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    min-width: 150px;
 }
 
-textarea{
-    resize:none;
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #c9a227;
+    display: block;
 }
 
-/* Button */
-button{
-    width:100%;
-    padding:14px;
-    background:linear-gradient(135deg,#c9a227,#e0b832);
-    border:none;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-    color:#0c0c0c;
-    margin-top:15px;
-    transition:0.3s;
+.stat-label {
+    font-size: 14px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 20px rgba(201,162,39,0.4);
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
 }
 
-/* Responsive */
-@media(max-width:650px){
-    .card{
-        margin:20px;
-        padding:40px 25px;
+/* Filter and Search Bar */
+.filter-bar {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.search-box {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid #333;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #c9a227;
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.filter-btn {
+    padding: 12px 20px;
+    background: #333;
+    border: 2px solid #444;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: #444;
+    border-color: #c9a227;
+}
+
+.filter-btn.active {
+    background: #c9a227;
+    color: #000;
+    border-color: #c9a227;
+}
+
+/* Request Grid */
+.requests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Request Card */
+.card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c9a227, #ffc107);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(201, 162, 39, 0.2);
+    border-color: rgba(201, 162, 39, 0.4);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.card h3 {
+    margin: 0;
+    color: #c9a227;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.priority-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.priority-high {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.priority-medium {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.priority-low {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+/* Customer Info */
+.customer-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.customer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c9a227, #ffc107);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 20px;
+    color: #000;
+    font-weight: 700;
+}
+
+.customer-details h4 {
+    margin: 0 0 5px 0;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.customer-details p {
+    margin: 0;
+    color: #888;
+    font-size: 14px;
+}
+
+/* Service Details */
+.service-details {
+    margin-bottom: 20px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #888;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-value {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Action Buttons */
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-approve {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.btn-approve:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-decline {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.btn-decline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+.btn-view {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+}
+
+.btn-view:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+}
+
+/* Status */
+.status {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-approved {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.status-declined {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 32px;
     }
+    
+    .requests-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+    }
+    
+    .filter-bar {
+        flex-direction: column;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
 }
 
 </style>
 </head>
 
-<body>
-
-<div class="card">
-
-<div class="title">SERVICE REQUEST</div>
-<div class="divider"></div>
-
-<form method="POST" action="#">
-
-    <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" name="name" required>
-    </div>
-
-    <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" name="phone" required>
-    </div>
-
-    <div class="form-group">
-        <label>Vehicle Number</label>
-        <input type="text" name="vehicle_number" required>
-    </div>
-
-    <div class="form-group">
-        <label>Vehicle Type</label>
-        <select name="vehicle_type" required>
-            <option value="">Select</option>
-            <option>Car</option>
-            <option>Bike</option>
-            <option>Scooter</option>
-            <option>Truck</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Service Needed</label>
-        <select name="service_type" required>
-            <option value="">Select Service</option>
-            <option>Oil Change</option>
-            <option>Brake Repair</option>
-            <option>Engine Check</option>
-            <option>General Service</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Preferred Date</label>
-        <input type="date" name="service_date" required>
-    </div>
-
-    <div class="form-group">
-        <label>Additional Notes</label>
-        <textarea name="notes" rows="3"></textarea>
-    </div>
-
-    <button type="submit">SUBMIT REQUEST</button>
-
-</form>
-
+<!-- Page Header -->
+<div class="page-header">
+    <h1><i class="fas fa-wrench"></i> SERVICE REQUESTS</h1>
+    <div class="subtitle">Manage customer service requests</div>
 </div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+    <div class="stats-container">
+        <div class="stat-item">
+            <span class="stat-number">24</span>
+            <span class="stat-label">Total Requests</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Pending</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Approved</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Declined</span>
+        </div>
+    </div>
+</div>
+
+<!-- Filter and Search Bar -->
+<div class="container">
+    <div class="filter-bar">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search requests..." id="searchInput">
+        </div>
+        <button class="filter-btn active" onclick="filterRequests('all')">All</button>
+        <button class="filter-btn" onclick="filterRequests('pending')">Pending</button>
+        <button class="filter-btn" onclick="filterRequests('approved')">Approved</button>
+        <button class="filter-btn" onclick="filterRequests('declined')">Declined</button>
+    </div>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+    <div class="requests-grid">
+        <!-- Request Card 1 -->
+        <div class="card" data-status="pending">
+            <div class="card-header">
+                <h3>Request #1021</h3>
+                <span class="priority-badge priority-high">High Priority</span>
+            </div>
+            
+            <div class="customer-info">
+                <div class="customer-avatar">JD</div>
+                <div class="customer-details">
+                    <h4>John Doe</h4>
+                    <p><i class="fas fa-phone"></i> 9876543210</p>
+                </div>
+            </div>
+            
+            <div class="service-details">
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-calendar"></i> Date</span>
+                    <span class="detail-value">20 Feb 2026</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-car"></i> Vehicle</span>
+                    <span class="detail-value">Car - Toyota Camry</span>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-approve" onclick="approve(this)">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+                <button class="btn btn-decline" onclick="decline(this)">
+                    <i class="fas fa-times"></i> Decline
+                </button>
+                <button class="btn btn-view" onclick="viewDetails(this)">
+                    <i class="fas fa-eye"></i> View
+                </button>
+            </div>
+            
+            <div class="status"></div>
+        </div>
+        
+        <!-- Request Card 2 -->
+        <div class="card" data-status="pending">
+            <div class="card-header">
+                <h3>Request #1022</h3>
+                <span class="priority-badge priority-medium">Medium Priority</span>
+            </div>
+            
+            <div class="customer-info">
+                <div class="customer-avatar">S</div>
+                <div class="customer-details">
+                    <h4>Sarah Johnson</h4>
+                    <p><i class="fas fa-phone"></i> 9123456789</p>
+                </div>
+            </div>
+            
+            <div class="service-details">
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-calendar"></i> Date</span>
+                    <span class="detail-value">21 Feb 2026</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-motorcycle"></i> Vehicle</span>
+                    <span class="detail-value">Bike - Honda Activa</span>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-approve" onclick="approve(this)">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+                <button class="btn btn-decline" onclick="decline(this)">
+                    <i class="fas fa-times"></i> Decline
+                </button>
+                <button class="btn btn-view" onclick="viewDetails(this)">
+                    <i class="fas fa-eye"></i> View
+                </button>
+            </div>
+            
+            <div class="status"></div>
+        </div>
+        
+        <!-- Additional Sample Request -->
+        <div class="card" data-status="approved">
+            <div class="card-header">
+                <h3>Request #1020</h3>
+                <span class="priority-badge priority-low">Low Priority</span>
+            </div>
+            
+            <div class="customer-info">
+                <div class="customer-avatar">MR</div>
+                <div class="customer-details">
+                    <h4>Mike Roberts</h4>
+                    <p><i class="fas fa-phone"></i> 8765432109</p>
+                </div>
+            </div>
+            
+            <div class="service-details">
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-calendar"></i> Date</span>
+                    <span class="detail-value">19 Feb 2026</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-car"></i> Vehicle</span>
+                    <span class="detail-value">SUV - Ford Explorer</span>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-view" onclick="viewDetails(this)">
+                    <i class="fas fa-eye"></i> View Details
+                </button>
+            </div>
+            
+            <div class="status status-approved">
+                <i class="fas fa-check-circle"></i> Approved
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Approve request
+function approve(btn) {
+    const card = btn.closest('.card');
+    const statusDiv = card.querySelector('.status');
+    
+    // Add loading state
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    btn.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+        statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> Approved';
+        statusDiv.className = 'status status-approved';
+        card.setAttribute('data-status', 'approved');
+        
+        // Hide action buttons
+        const btnGroup = card.querySelector('.btn-group');
+        btnGroup.innerHTML = '<button class="btn btn-view" onclick="viewDetails(this)"><i class="fas fa-eye"></i> View Details</button>';
+        
+        // Update stats
+        updateStats();
+        
+        // Show notification
+        showNotification('Request approved successfully!', 'success');
+    }, 1000);
+}
+
+// Decline request
+function decline(btn) {
+    const card = btn.closest('.card');
+    const statusDiv = card.querySelector('.status');
+    
+    // Add loading state
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    btn.disabled = true;
+    
+    // Simulate API call
+    setTimeout(() => {
+        statusDiv.innerHTML = '<i class="fas fa-times-circle"></i> Declined';
+        statusDiv.className = 'status status-declined';
+        card.setAttribute('data-status', 'declined');
+        
+        // Hide action buttons
+        const btnGroup = card.querySelector('.btn-group');
+        btnGroup.innerHTML = '<button class="btn btn-view" onclick="viewDetails(this)"><i class="fas fa-eye"></i> View Details</button>';
+        
+        // Update stats
+        updateStats();
+        
+        // Show notification
+        showNotification('Request declined', 'error');
+    }, 1000);
+}
+
+// View details
+function viewDetails(btn) {
+    const card = btn.closest('.card');
+    const requestId = card.querySelector('h3').textContent;
+    
+    // Show notification
+    showNotification(`Opening details for ${requestId}...`, 'info');
+    
+    // In a real application, this would open a modal or navigate to details page
+    console.log('View details for:', requestId);
+}
+
+// Filter requests
+function filterRequests(status) {
+    const cards = document.querySelectorAll('.card');
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    // Update active button
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Filter cards
+    cards.forEach(card => {
+        if (status === 'all') {
+            card.style.display = 'block';
+        } else {
+            card.style.display = card.getAttribute('data-status') === status ? 'block' : 'none';
+        }
+    });
+}
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+    });
+});
+
+// Update statistics
+function updateStats() {
+    const cards = document.querySelectorAll('.card');
+    const stats = {
+        total: cards.length,
+        pending: 0,
+        approved: 0,
+        declined: 0
+    };
+    
+    cards.forEach(card => {
+        const status = card.getAttribute('data-status');
+        if (status === 'pending') stats.pending++;
+        else if (status === 'approved') stats.approved++;
+        else if (status === 'declined') stats.declined++;
+    });
+    
+    // Update stats display
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers[0]) statNumbers[0].textContent = stats.total;
+    if (statNumbers[1]) statNumbers[1].textContent = stats.pending;
+    if (statNumbers[2]) statNumbers[2].textContent = stats.approved;
+    if (statNumbers[3]) statNumbers[3].textContent = stats.declined;
+}
+
+// Show notification (simple implementation)
+function showNotification(message, type = 'success') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+    `;
+    
+    // Set background based on type
+    if (type === 'success') {
+        notification.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+    } else if (type === 'error') {
+        notification.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+    } else {
+        notification.style.background = 'linear-gradient(135deg, #6c757d, #5a6268)';
+    }
+    
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
+// Initialize stats on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateStats();
+});
+
+</script>
 
 </body>
 </html>
