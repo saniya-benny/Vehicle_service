@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Service Requests</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+
+body{margin:0;background:#0c0c0c;color:white;font-family:'Oswald',sans-serif;}
+
+.header{
+background:linear-gradient(90deg,#c9a227,#b8951f);
+text-align:center;
+padding:40px;
+}
+
+.container{padding:40px 80px;}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;margin-bottom:35px;
+}
+
+.stat{
+background:rgba(201,162,39,0.1);
+border:1px solid #c9a227;
+border-radius:15px;
+padding:25px;
+text-align:center;
+}
+
+.stat h2{color:#c9a227;margin:0;font-size:38px}
+
+.request-search{
+display:flex;
+gap:15px;
+background:rgba(201,162,39,0.1);
+padding:18px;
+border-radius:18px;
+margin-bottom:35px;
+}
+
+.search-box{
+flex:1;
+display:flex;
+background:rgba(255,255,255,0.05);
+padding:12px 16px;
+border-radius:12px;
+align-items:center;
+}
+
+.search-box input{
+flex:1;background:transparent;border:none;color:white;outline:none;
+}
+
+.filter{padding:10px 16px;border-radius:10px;border:none;background:#333;color:#ddd;cursor:pointer}
+.filter.active{background:#c9a227;color:black}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(201,162,39,0.08);
+border:1px solid #c9a227;
+border-radius:16px;
+padding:22px;
+}
+
+.user{
+display:flex;gap:15px;margin:12px 0;background:rgba(255,255,255,0.05);padding:12px;border-radius:12px;
+}
+
+.avatar{
+width:45px;height:45px;background:#c9a227;color:#000;
+display:flex;align-items:center;justify-content:center;border-radius:50%;font-weight:bold;
+}
+
+.details{font-family:Arial;font-size:14px;opacity:.85}
+
+.actions{display:flex;gap:12px;margin-top:15px;}
+
+button{
+flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;
+}
+
+.approve{background:#28a745}
+.decline{background:#dc3545}
+
+.status{
+margin-top:10px;
+font-family:Arial;
+font-size:13px;
+}
+
+.pending{color:#ffc107}
+.approved{color:#28a745}
+.declined{color:#dc3545}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1><i class="fas fa-wrench"></i> SERVICE REQUESTS</h1>
+<p>Manage customer service requests</p>
+</div>
+
+<div class="container">
+
+<!-- STATS -->
+<div class="stats">
+<div class="stat"><h2 id="total">0</h2>TOTAL</div>
+<div class="stat"><h2 id="pending">0</h2>PENDING</div>
+<div class="stat"><h2 id="approved">0</h2>APPROVED</div>
+<div class="stat"><h2 id="declined">0</h2>DECLINED</div>
+</div>
+
+<!-- SEARCH + FILTER -->
+<div class="request-search">
+
+<div class="search-box">
+<i class="fas fa-search"></i>&nbsp;
+<input id="search" placeholder="Search requests...">
+</div>
+
+<button class="filter active" onclick="filterCards('all')">All</button>
+<button class="filter" onclick="filterCards('pending')">Pending</button>
+<button class="filter" onclick="filterCards('approved')">Approved</button>
+<button class="filter" onclick="filterCards('declined')">Declined</button>
+
+</div>
+
+<!-- REQUESTS -->
+<div class="cards" id="cards"></div>
+
+</div>
+
+<script>
+
+const requests=[
+{id:1021,name:"John Doe",phone:"9876543210",vehicle:"Car",service:"Engine Repair",status:"pending"},
+{id:1022,name:"Sarah Johnson",phone:"9123456789",vehicle:"Bike",service:"Oil Change",status:"pending"},
+{id:1023,name:"Mike Ross",phone:"8899776655",vehicle:"Truck",service:"Brake Repair",status:"pending"},
+{id:1024,name:"Emma Stone",phone:"9988776655",vehicle:"Scooter",service:"Full Service",status:"pending"},
+{id:1025,name:"Chris Evans",phone:"8877665544",vehicle:"Car",service:"AC Repair",status:"pending"}
+];
+
+function draw(){
+
+const cards=document.getElementById("cards");
+cards.innerHTML="";
+
+requests.forEach((r,i)=>{
+
+cards.innerHTML+=`
+<div class="card" data-status="${r.status}">
+
+<h3>Request #${r.id}</h3>
+
+<div class="user">
+<div class="avatar">${r.name[0]}</div>
+<div><b>${r.name}</b><br><small>${r.phone}</small></div>
+</div>
+
+<div class="details">
+Vehicle: ${r.vehicle}<br>
+Service: ${r.service}
+</div>
+
+<div class="status ${r.status}">STATUS: ${r.status.toUpperCase()}</div>
+
+<div class="actions">
+
+<button class="approve" onclick="setStatus(${i},'approved')">APPROVE</button>
+<button class="decline" onclick="setStatus(${i},'declined')">DECLINE</button>
+
+</div>
+
+</div>`;
+});
+
+updateStats();
+}
+
+function setStatus(index,status){
+requests[index].status=status;
+draw();
+}
+
+function updateStats(){
+
+document.getElementById("total").innerText=requests.length;
+
+document.getElementById("pending").innerText=
+requests.filter(r=>r.status==="pending").length;
+
+document.getElementById("approved").innerText=
+requests.filter(r=>r.status==="approved").length;
+
+document.getElementById("declined").innerText=
+requests.filter(r=>r.status==="declined").length;
+
+}
+
+function filterCards(type){
+
+document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+event.target.classList.add("active");
+
+document.querySelectorAll(".card").forEach(c=>{
+if(type==="all") c.style.display="block";
+else c.style.display=c.dataset.status===type?"block":"none";
+});
+
+}
+
+draw();
+
+</script>
+
+</body>
+</html>

@@ -299,6 +299,8 @@
 <div class="particles" id="particles"></div>
 
 <div class="container page-content" id="pageContent">
+<<<<<<< HEAD
+=======
     <div style="display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start;">
         <!-- Left Sidebar Filters -->
         <form method="GET">
@@ -361,17 +363,104 @@
 
 </form>
 
+>>>>>>> 7f1a377c47973781f7d7f683e336ba8910704ffc
 
-        <!-- Right Content Area -->
+    <div style="grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
         <div>
-            <div style="grid-column: 1 / -1;">
-                <div class="section-title">WORKSHOP LIST</div>
-                <div class="divider"></div>
-                <div class="text">
-                    Browse our network of certified vehicle service workshops and find the perfect match for your needs.
+            <div class="section-title">WORKSHOP LIST</div>
+            <div class="divider"></div>
+            <div class="text">
+                Browse our network of certified vehicle service workshops and find the perfect match for your needs.
+            </div>
+        </div>
+        <div style="position: relative;">
+            <button class="btn" onclick="toggleMainFilter()" style="background: linear-gradient(135deg, #c9a227, #8a7d1f); white-space: nowrap; padding: 10px 15px;">
+                <i class="fas fa-filter"></i>
+            </button>
+            
+            <!-- Filter Section (Hidden by default) -->
+            <div id="main-filter-section" style="position: absolute; top: 100%; right: 0; margin-top: 10px; width: 300px; background: rgba(0, 0, 0, 0.95); border: 2px solid #c9a227; border-radius: 10px; padding: 20px; z-index: 1000; display: none;">
+                <div class="section-title" style="font-size: 16px; margin-bottom: 15px;">FILTER WORKSHOPS</div>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="filter-group">
+                        <label class="filter-label" onclick="toggleFilter('rating')" style="cursor: pointer;">
+                            <i class="fas fa-star"></i> RATING <i class="fas fa-chevron-down" id="rating-chevron"></i>
+                        </label>
+                        <div class="filter-checkboxes" id="rating-filters" style="display: none;">
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="4.5" onchange="filterWorkshops()"> 4.5+ Stars
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="4" onchange="filterWorkshops()"> 4+ Stars
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="3.5" onchange="filterWorkshops()"> 3.5+ Stars
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="3" onchange="filterWorkshops()"> 3+ Stars
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label" onclick="toggleFilter('service')" style="cursor: pointer;">
+                            <i class="fas fa-wrench"></i> SERVICES <i class="fas fa-chevron-down" id="service-chevron"></i>
+                        </label>
+                        <div class="filter-checkboxes" id="service-filters" style="display: none;">
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Oil Change" onchange="filterWorkshops()"> Oil Change
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Engine Repair" onchange="filterWorkshops()"> Engine Repair
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="AC Service" onchange="filterWorkshops()"> AC Service
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Brake Service" onchange="filterWorkshops()"> Brake Service
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Battery Service" onchange="filterWorkshops()"> Battery Service
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Tire Service" onchange="filterWorkshops()"> Tire Service
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label" onclick="toggleFilter('location')" style="cursor: pointer;">
+                            <i class="fas fa-map-marker-alt"></i> LOCATION <i class="fas fa-chevron-down" id="location-chevron"></i>
+                        </label>
+                        <div class="filter-checkboxes" id="location-filters" style="display: none;">
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Kochi" onchange="filterWorkshops()"> Kochi
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Ernakulam" onchange="filterWorkshops()"> Ernakulam
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; color: #bfbfbf; font-size: 13px; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Trivandrum" onchange="filterWorkshops()"> Trivandrum
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="resetFilters()" style="background: transparent; border: 1px solid #c9a227; color: #c9a227; width: 100%;">
+                        <i class="fas fa-redo"></i> RESET FILTERS
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
 
+<<<<<<< HEAD
+    <!-- Workshop List -->
+    <div class="workshop-list-container">
+        <!-- Workshop Card 1 -->
+        <div class="workshop-card">
+            <div class="workshop-header">
+                <div class="workshop-icon">
+=======
             <!-- Workshop List -->
    <div class="workshop-list-container">
 
@@ -382,6 +471,7 @@
                 {% if w.workshop_picture %}
                     <img src="{{ w.workshop_picture.url }}" width="60" height="60">
                 {% else %}
+>>>>>>> 7f1a377c47973781f7d7f683e336ba8910704ffc
                     <i class="fas fa-wrench"></i>
                 {% endif %}
             </div>
@@ -475,6 +565,16 @@ function viewDetails(workshopId) {
     }, 1000);
 }
 
+// Toggle main filter section
+function toggleMainFilter() {
+    const filterSection = document.getElementById('main-filter-section');
+    if (filterSection.style.display === 'none') {
+        filterSection.style.display = 'block';
+    } else {
+        filterSection.style.display = 'none';
+    }
+}
+
 // Toggle filter visibility
 function toggleFilter(filterType) {
     const filterId = filterType + '-filters';
@@ -541,19 +641,10 @@ function filterWorkshops() {
 
 // Reset filters
 function resetFilters() {
-    // Uncheck all rating checkboxes
-    const ratingCheckboxes = document.querySelectorAll('#rating-filters input[type="checkbox"]');
-    ratingCheckboxes.forEach(checkbox => checkbox.checked = false);
+    document.getElementById('ratingFilter').value = '';
+    document.getElementById('serviceFilter').value = '';
+    document.getElementById('locationFilter').value = '';
     
-    // Uncheck all service checkboxes
-    const serviceCheckboxes = document.querySelectorAll('#service-filters input[type="checkbox"]');
-    serviceCheckboxes.forEach(checkbox => checkbox.checked = false);
-    
-    // Uncheck all location checkboxes
-    const locationCheckboxes = document.querySelectorAll('#location-filters input[type="checkbox"]');
-    locationCheckboxes.forEach(checkbox => checkbox.checked = false);
-    
-    // Show all workshop cards
     const workshopCards = document.querySelectorAll('.workshop-card');
     workshopCards.forEach(card => {
         card.style.display = 'block';
