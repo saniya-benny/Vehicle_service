@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load static %}
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="{% static 'styles.css' %}">
 
 <style>
 /* Workshop List Specific Styles */
@@ -298,6 +299,71 @@
 <div class="particles" id="particles"></div>
 
 <div class="container page-content" id="pageContent">
+<<<<<<< HEAD
+=======
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start;">
+        <!-- Left Sidebar Filters -->
+        <form method="GET">
+
+<!-- Rating Filter -->
+<div class="filter-group">
+    <label class="filter-label">
+        <i class="fas fa-star"></i> RATING
+    </label>
+
+    <div class="filter-checkboxes">
+    
+    </div>
+</div>
+
+<!-- Service Filter -->
+<div class="filter-group" style="margin-top: 20px;">
+    <label class="filter-label">
+        <i class="fas fa-wrench"></i> SERVICES
+    </label>
+
+    <div class="filter-checkboxes">
+        {% for key,value in service_choices %}
+        <label>
+            <input type="checkbox" name="services" value="{{ key }}"
+                {% if key in request.GET.getlist.services %}checked{% endif %}>
+            {{ value }}
+        </label>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Location Filter -->
+<div class="filter-group" style="margin-top: 20px;">
+    <label class="filter-label">
+        <i class="fas fa-map-marker-alt"></i> LOCATION
+    </label>
+
+    <div class="filter-checkboxes">
+        {% for loc in locations %}
+        <label>
+            <input type="checkbox" name="location" value="{{ loc }}"
+                {% if loc in request.GET.getlist.location %}checked{% endif %}>
+            {{ loc }}
+        </label>
+        {% endfor %}
+    </div>
+</div>
+
+<button type="submit" class="btn" style="width: 100%; margin-top: 20px;">
+    APPLY FILTER
+</button>
+
+<a href="{% url 'workshoplist' %}">
+    <button type="button" class="btn"
+        style="width:100%; margin-top:10px; background:transparent; border:1px solid #c9a227;">
+        RESET
+    </button>
+</a>
+
+</form>
+
+>>>>>>> 7f1a377c47973781f7d7f683e336ba8910704ffc
 
     <div style="grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
         <div>
@@ -387,241 +453,79 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Workshop List -->
     <div class="workshop-list-container">
         <!-- Workshop Card 1 -->
         <div class="workshop-card">
             <div class="workshop-header">
                 <div class="workshop-icon">
+=======
+            <!-- Workshop List -->
+   <div class="workshop-list-container">
+
+{% for w in workshops %}
+    <div class="workshop-card">
+        <div class="workshop-header">
+            <div class="workshop-icon">
+                {% if w.workshop_picture %}
+                    <img src="{{ w.workshop_picture.url }}" width="60" height="60">
+                {% else %}
+>>>>>>> 7f1a377c47973781f7d7f683e336ba8910704ffc
                     <i class="fas fa-wrench"></i>
-                </div>
-                <div class="workshop-title">
-                    <div class="workshop-name">Premium Auto Care</div>
-                    <div class="workshop-rating">
-                        <span class="stars">★★★★★</span>
-                        <span>4.8 (234 reviews)</span>
-                    </div>
-                </div>
+                {% endif %}
             </div>
-            
-            <div class="workshop-info">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Kochi, Kerala</span>
+
+            <div class="workshop-title">
+                <div class="workshop-name">{{ w.name }}</div>
+                <div class="workshop-rating">
+                    <span>{{ w.email }}</span>
                 </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 98765 43210</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Mon-Sat: 9:00 AM - 7:00 PM</span>
-                </div>
-            </div>
-            
-            <div class="service-tags">
-                <span class="service-tag">Oil Change</span>
-                <span class="service-tag">Engine Repair</span>
-                <span class="service-tag">AC Service</span>
-                <span class="service-tag">Brake Service</span>
-            </div>
-            
-            <div class="workshop-actions">
-                <button class="action-btn primary-btn" onclick="viewDetails('premium-auto')">
-                    <i class="fas fa-eye"></i> VIEW DETAILS
-                </button>
-                <button class="action-btn secondary-btn" onclick="bookService('premium-auto')">
-                    <i class="fas fa-calendar"></i> BOOK SERVICE
-                </button>
             </div>
         </div>
 
-        <!-- Workshop Card 2 -->
-        <div class="workshop-card">
-            <div class="workshop-header">
-                <div class="workshop-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <div class="workshop-title">
-                    <div class="workshop-name">Quick Fix Garage</div>
-                    <div class="workshop-rating">
-                        <span class="stars">★★★★</span>
-                        <span>4.2 (189 reviews)</span>
-                    </div>
-                </div>
+        <div class="workshop-info">
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ w.Location }}</span>
             </div>
-            
-            <div class="workshop-info">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Ernakulam, Kerala</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 87654 32109</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Mon-Sat: 8:00 AM - 6:00 PM</span>
-                </div>
+
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <span>{{ w.phone }}</span>
             </div>
-            
-            <div class="service-tags">
-                <span class="service-tag">Oil Change</span>
-                <span class="service-tag">Brake Service</span>
-                <span class="service-tag">Battery Service</span>
-            </div>
-            
-            <div class="workshop-actions">
-                <button class="action-btn primary-btn" onclick="viewDetails('quick-fix')">
-                    <i class="fas fa-eye"></i> VIEW DETAILS
-                </button>
-                <button class="action-btn secondary-btn" onclick="bookService('quick-fix')">
-                    <i class="fas fa-calendar"></i> BOOK SERVICE
-                </button>
+
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span>
+                    {{ w.opening_time }} - {{ w.closing_time }}
+                </span>
             </div>
         </div>
 
-        <!-- Workshop Card 3 -->
-        <div class="workshop-card">
-            <div class="workshop-header">
-                <div class="workshop-icon">
-                    <i class="fas fa-car"></i>
-                </div>
-                <div class="workshop-title">
-                    <div class="workshop-name">City Car Clinic</div>
-                    <div class="workshop-rating">
-                        <span class="stars">★★★★</span>
-                        <span>3.9 (156 reviews)</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="workshop-info">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Trivandrum, Kerala</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 76543 21098</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Mon-Sat: 9:00 AM - 8:00 PM</span>
-                </div>
-            </div>
-            
-            <div class="service-tags">
-                <span class="service-tag">AC Service</span>
-                <span class="service-tag">Battery Service</span>
-                <span class="service-tag">Tire Service</span>
-            </div>
-            
-            <div class="workshop-actions">
-                <button class="action-btn primary-btn" onclick="viewDetails('city-clinic')">
-                    <i class="fas fa-eye"></i> VIEW DETAILS
-                </button>
-                <button class="action-btn secondary-btn" onclick="bookService('city-clinic')">
-                    <i class="fas fa-calendar"></i> BOOK SERVICE
-                </button>
-            </div>
+        <div class="service-tags">
+            {% for service in w.services %}
+                <span class="service-tag">{{ service }}</span>
+            {% endfor %}
         </div>
 
-        <!-- Workshop Card 4 -->
-        <div class="workshop-card">
-            <div class="workshop-header">
-                <div class="workshop-icon">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <div class="workshop-title">
-                    <div class="workshop-name">Expert Garage</div>
-                    <div class="workshop-rating">
-                        <span class="stars">★★★★★</span>
-                        <span>4.6 (298 reviews)</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="workshop-info">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Kochi, Kerala</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 65432 10987</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Mon-Sat: 8:30 AM - 7:30 PM</span>
-                </div>
-            </div>
-            
-            <div class="service-tags">
-                <span class="service-tag">Engine Repair</span>
-                <span class="service-tag">Oil Change</span>
-                <span class="service-tag">AC Service</span>
-                <span class="service-tag">Tire Service</span>
-            </div>
-            
-            <div class="workshop-actions">
-                <button class="action-btn primary-btn" onclick="viewDetails('expert-garage')">
-                    <i class="fas fa-eye"></i> VIEW DETAILS
+        <div class="workshop-actions">
+            <a href="{% url 'workshoplist'%}">
+                <button class="action-btn primary-btn">
+                    VIEW DETAILS
                 </button>
-                <button class="action-btn secondary-btn" onclick="bookService('expert-garage')">
-                    <i class="fas fa-calendar"></i> BOOK SERVICE
-                </button>
-            </div>
-        </div>
+            </a>
 
-        <!-- Workshop Card 5 -->
-        <div class="workshop-card">
-            <div class="workshop-header">
-                <div class="workshop-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="workshop-title">
-                    <div class="workshop-name">Speed Service Center</div>
-                    <div class="workshop-rating">
-                        <span class="stars">★★★★</span>
-                        <span>4.1 (142 reviews)</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="workshop-info">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Kochi, Kerala</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 54321 09876</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Mon-Sat: 7:00 AM - 9:00 PM</span>
-                </div>
-            </div>
-            
-            <div class="service-tags">
-                <span class="service-tag">Oil Change</span>
-                <span class="service-tag">Brake Service</span>
-                <span class="service-tag">Battery Service</span>
-            </div>
-            
-            <div class="workshop-actions">
-                <button class="action-btn primary-btn" onclick="viewDetails('speed-service')">
-                    <i class="fas fa-eye"></i> VIEW DETAILS
+            <a href="{% url 'workshoplist' %}">
+                <button class="action-btn secondary-btn">
+                    BOOK SERVICE
                 </button>
-                <button class="action-btn secondary-btn" onclick="bookService('speed-service')">
-                    <i class="fas fa-calendar"></i> BOOK SERVICE
-                </button>
-            </div>
+            </a>
         </div>
-
     </div>
+{% empty %}
+    <p>No workshops available.</p>
+{% endfor %}
 
 </div>
 
