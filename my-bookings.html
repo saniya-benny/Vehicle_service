@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="{% static 'styles.css' %}">
 
 <style>
 /* ================= MY BOOKINGS PAGE STYLES ================= */
@@ -330,165 +332,79 @@
             <div class="bookings-subtitle">View your service appointment history</div>
         </div>
 
-        <div class="booking-list">
-            <!-- Booking 1 -->
-            <div class="booking-item">
-                <div class="booking-header-info">
-                    <div class="booking-service-name">Engine Repair</div>
-                    <div class="booking-date-time">
-                        <div class="date">27-02-2026</div>
-                        <div class="time">10:30 AM</div>
-                    </div>
-                </div>
-                
-                <div class="booking-details">
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Service</div>
-                        <div class="booking-detail-value yes">Yes</div>
-                    </div>
-                    
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Location</div>
-                        <div class="booking-detail-value">Pezhum, Thrissur, Kerala</div>
-                    </div>
-                    
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Distance</div>
-                        <div class="booking-detail-value">17 km</div>
-                    </div>
-                </div>
-                
-                <div class="booking-price-section">
-                    <div class="booking-price-details">
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Service Cost</span>
-                            <span class="booking-price-value">₹100</span>
-                        </div>
-                        
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Pickup Charges</span>
-                            <span class="booking-price-value">₹343</span>
-                        </div>
-                        
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Extra Service Cost</span>
-                            <span class="booking-price-value">₹0</span>
-                        </div>
-                    </div>
-                    
-                    <div class="booking-total">
-                        <span>Total Amount</span>
-                        <span>₹443</span>
-                    </div>
-                </div>
-            </div>
+      <div class="booking-list">
 
-            <!-- Booking 2 -->
-            <div class="booking-item">
-                <div class="booking-header-info">
-                    <div class="booking-service-name">Full Service Package</div>
-                    <div class="booking-date-time">
-                        <div class="date">25-02-2026</div>
-                        <div class="time">2:00 PM</div>
-                    </div>
-                </div>
-                
-                <div class="booking-details">
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Service</div>
-                        <div class="booking-detail-value no">No</div>
-                    </div>
-                    
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Service Type</div>
-                        <div class="booking-detail-value">Complete Vehicle Check</div>
-                    </div>
-                    
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Duration</div>
-                        <div class="booking-detail-value">4 Hours</div>
-                    </div>
-                </div>
-                
-                <div class="booking-price-section">
-                    <div class="booking-price-details">
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Service Cost</span>
-                            <span class="booking-price-value">₹2999</span>
-                        </div>
-                        
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Pickup Charges</span>
-                            <span class="booking-price-value">₹0</span>
-                        </div>
-                        
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Extra Service Cost</span>
-                            <span class="booking-price-value">₹0</span>
-                        </div>
-                    </div>
-                    
-                    <div class="booking-total">
-                        <span>Total Amount</span>
-                        <span>₹2999</span>
-                    </div>
-                </div>
-            </div>
+{% for b in bookings %}
+<div class="booking-item">
 
-            <!-- Booking 3 -->
-            <div class="booking-item">
-                <div class="booking-header-info">
-                    <div class="booking-service-name">Oil Change & Car Wash</div>
-                    <div class="booking-date-time">
-                        <div class="date">20-02-2026</div>
-                        <div class="time">9:00 AM</div>
-                    </div>
-                </div>
-                
-                <div class="booking-details">
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Service</div>
-                        <div class="booking-detail-value yes">Yes</div>
-                    </div>
-                    
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Location</div>
-                        <div class="booking-detail-value">MG Road, Kochi, Kerala</div>
-                    </div>
-                    
-                    <div class="booking-detail">
-                        <div class="booking-detail-label">Pickup Distance</div>
-                        <div class="booking-detail-value">8 km</div>
-                    </div>
-                </div>
-                
-                <div class="booking-price-section">
-                    <div class="booking-price-details">
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Service Cost</span>
-                            <span class="booking-price-value">₹1498</span>
-                        </div>
-                        
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Pickup Charges</span>
-                            <span class="booking-price-value">₹200</span>
-                        </div>
-                        
-                        <div class="booking-price-item">
-                            <span class="booking-price-label">Extra Service Cost</span>
-                            <span class="booking-price-value">₹0</span>
-                        </div>
-                    </div>
-                    
-                    <div class="booking-total">
-                        <span>Total Amount</span>
-                        <span>₹1698</span>
-                    </div>
-                </div>
+    <div class="booking-header-info">
+        <div class="booking-service-name">
+            {{ b.services }}
+        </div>
+        <div class="booking-date-time">
+            <div class="date">
+                {{ b.booking_time|date:"d-m-Y" }}
             </div>
         </div>
     </div>
+
+    <div class="booking-details">
+
+        <div class="booking-detail">
+            <div class="booking-detail-label">Vehicle</div>
+            <div class="booking-detail-value">
+                {{ b.vehicle.vehicle_name }}
+            </div>
+        </div>
+
+        <div class="booking-detail">
+            <div class="booking-detail-label">Workshop</div>
+            <div class="booking-detail-value">
+                {{ b.workshop.name }}
+            </div>
+        </div>
+
+        <div class="booking-detail">
+            <div class="booking-detail-label">Status</div>
+            <div class="booking-detail-value 
+                {% if b.status == 'Approved' %}yes
+                {% elif b.status == 'Declined' %}no
+                {% endif %}">
+                {{ b.status }}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="booking-price-section">
+
+        <div class="booking-price-details">
+
+            <div class="booking-price-item">
+                <span class="booking-price-label">Total Payment</span>
+                <span class="booking-price-value">₹{{ b.payment }}</span>
+            </div>
+
+        </div>
+
+        <div class="booking-total">
+            <span>Total Amount</span>
+            <span>₹{{ b.payment }}</span>
+        </div>
+
+    </div>
+
 </div>
+
+{% empty %}
+<div style="text-align:center; padding:40px;">
+    <h3>No bookings found</h3>
+    <p>You have not booked any services yet.</p>
+</div>
+{% endfor %}
+
+</div>
+
 
 <!-- Notification -->
 <div class="notification" id="notification"></div>
