@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops - Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>ADMIN PANEL</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="users.html">Users</a></li>
+                <li><a href="workshops.html" class="active">Workshops</a></li>
+                <li><a href="vehicles.html">Vehicles</a></li>
+                <li><a href="transactions.html">Transactions</a></li>
+                <li><a href="admin-login.html">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+            <div class="content-header">
+                <h1>Workshops Management</h1>
+            </div>
+
+            <!-- Workshops Table -->
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Workshop Name</th>
+                            <th>Owner Name</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Approve</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Auto Care Center</td>
+                            <td>James Wilson</td>
+                            <td>+1 234-567-8901</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Quick Fix Garage</td>
+                            <td>Michael Chen</td>
+                            <td>+1 234-567-8902</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Premium Auto Service</td>
+                            <td>David Martinez</td>
+                            <td>+1 234-567-8903</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>City Motor Works</td>
+                            <td>Robert Taylor</td>
+                            <td>+1 234-567-8904</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Express Service Center</td>
+                            <td>William Anderson</td>
+                            <td>+1 234-567-8905</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Pro Auto Repair</td>
+                            <td>Christopher Lee</td>
+                            <td>+1 234-567-8906</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles - Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>ADMIN PANEL</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="users.html">Users</a></li>
+                <li><a href="workshops.html">Workshops</a></li>
+                <li><a href="vehicles.html" class="active">Vehicles</a></li>
+                <li><a href="transactions.html">Transactions</a></li>
+                <li><a href="admin-login.html">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+            <div class="content-header">
+                <h1>Vehicles Management</h1>
+            </div>
+
+            <!-- Vehicles Table -->
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Name</th>
+                            <th>Owner</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Approve</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Toyota Camry 2022</td>
+                            <td>John Doe</td>
+                            <td>Sedan</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Honda Civic 2021</td>
+                            <td>Jane Smith</td>
+                            <td>Sedan</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Ford F-150 2023</td>
+                            <td>Mike Johnson</td>
+                            <td>Truck</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>BMW X5 2022</td>
+                            <td>Sarah Williams</td>
+                            <td>SUV</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Tesla Model 3 2023</td>
+                            <td>Robert Brown</td>
+                            <td>Electric</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Mercedes C-Class 2022</td>
+                            <td>Emily Davis</td>
+                            <td>Luxury</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Chevrolet Silverado 2023</td>
+                            <td>Christopher Lee</td>
+                            <td>Truck</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Audi A4 2022</td>
+                            <td>Lisa Johnson</td>
+                            <td>Luxury</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
