@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>ADMIN PANEL</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="users.html" class="active">Users</a></li>
+                <li><a href="workshops.html">Workshops</a></li>
+                <li><a href="vehicles.html">Vehicles</a></li>
+                <li><a href="transactions.html">Transactions</a></li>
+                <li><a href="admin-login.html">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+            <div class="content-header">
+                <h1>Users Management</h1>
+            </div>
+
+            <!-- Users Table -->
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Approve</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>john.doe@email.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>jane.smith@email.com</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Mike Johnson</td>
+                            <td>mike.j@email.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Sarah Williams</td>
+                            <td>sarah.w@email.com</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Robert Brown</td>
+                            <td>robert.b@email.com</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Emily Davis</td>
+                            <td>emily.d@email.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><button class="action-btn btn-approve">Approve</button></td>
+                            <td><button class="action-btn btn-delete">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
