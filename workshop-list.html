@@ -272,6 +272,604 @@
         flex-direction: column;
     }
 }
+
+/* ================= COMPREHENSIVE RESPONSIVE DESIGN ================= */
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    .container.page-content {
+        padding: 30px 15px;
+        max-width: 100%;
+    }
+    
+    /* Header Section */
+    .container.page-content > div:first-child {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start !important;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    
+    .divider {
+        width: 50px;
+        margin: 10px auto 15px;
+    }
+    
+    .text {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+    
+    /* Filter Button */
+    .btn[onclick="toggleMainFilter()"] {
+        font-size: 12px;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+    
+    /* Main Filter Section */
+    #main-filter-section {
+        width: 280px !important;
+        right: -10px !important;
+        padding: 15px !important;
+    }
+    
+    #main-filter-section .section-title {
+        font-size: 14px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .filter-group {
+        margin-bottom: 12px;
+    }
+    
+    .filter-label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .filter-checkboxes {
+        padding: 10px !important;
+    }
+    
+    .filter-checkboxes label {
+        font-size: 11px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    /* Workshop List Container */
+    .workshop-list-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px 15px;
+        margin: 0 auto;
+    }
+    
+    /* Workshop Cards */
+    .workshop-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .workshop-header {
+        margin-bottom: 15px;
+        gap: 12px;
+    }
+    
+    .workshop-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .workshop-name {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+    
+    .workshop-rating {
+        font-size: 12px;
+    }
+    
+    .workshop-info {
+        margin-bottom: 15px;
+    }
+    
+    .info-item {
+        font-size: 12px;
+        margin-bottom: 8px;
+        gap: 8px;
+    }
+    
+    .info-item i {
+        width: 16px;
+        font-size: 12px;
+    }
+    
+    .service-tags {
+        margin-bottom: 15px;
+        gap: 6px;
+    }
+    
+    .service-tag {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .workshop-actions {
+        gap: 8px;
+    }
+    
+    .action-btn {
+        font-size: 11px;
+        padding: 10px 15px;
+    }
+    
+    /* Navbar adjustments */
+    .navbar {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+    
+    .nav-logo {
+        font-size: 18px;
+        order: 1;
+    }
+    
+    .nav-search {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+        max-width: 300px;
+    }
+    
+    .nav-links {
+        order: 2;
+        gap: 8px;
+    }
+    
+    .nav-links a {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container.page-content {
+        padding: 20px 10px;
+        max-width: 100%;
+    }
+    
+    /* Header Section */
+    .container.page-content > div:first-child {
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: stretch !important;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .divider {
+        width: 40px;
+        height: 2px;
+        margin: 8px auto 12px;
+    }
+    
+    .text {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+    
+    /* Filter Button */
+    .btn[onclick="toggleMainFilter()"] {
+        width: 100%;
+        font-size: 12px;
+        padding: 10px;
+        justify-content: center;
+    }
+    
+    /* Main Filter Section */
+    #main-filter-section {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90% !important;
+        max-width: 320px !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
+        z-index: 10000 !important;
+    }
+    
+    #main-filter-section .section-title {
+        font-size: 16px !important;
+        margin-bottom: 15px !important;
+        text-align: center;
+    }
+    
+    .filter-group {
+        margin-bottom: 15px;
+    }
+    
+    .filter-label {
+        font-size: 13px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .filter-checkboxes {
+        padding: 12px !important;
+    }
+    
+    .filter-checkboxes label {
+        font-size: 12px !important;
+        margin-bottom: 8px !important;
+        padding: 5px;
+    }
+    
+    /* Workshop List Container */
+    .workshop-list-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px 10px;
+        margin: 0 auto;
+    }
+    
+    /* Workshop Cards */
+    .workshop-card {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .workshop-header {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 15px;
+        gap: 10px;
+    }
+    
+    .workshop-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        margin: 0 auto;
+    }
+    
+    .workshop-title {
+        text-align: center;
+    }
+    
+    .workshop-name {
+        font-size: 18px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    
+    .workshop-rating {
+        justify-content: center;
+        font-size: 12px;
+    }
+    
+    .workshop-info {
+        margin-bottom: 15px;
+    }
+    
+    .info-item {
+        font-size: 12px;
+        margin-bottom: 10px;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+    
+    .info-item i {
+        width: 18px;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+    
+    .info-item span {
+        word-break: break-word;
+    }
+    
+    .service-tags {
+        justify-content: center;
+        margin-bottom: 15px;
+        gap: 5px;
+    }
+    
+    .service-tag {
+        font-size: 10px;
+        padding: 3px 8px;
+        text-align: center;
+    }
+    
+    .workshop-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .action-btn {
+        width: 100%;
+        font-size: 12px;
+        padding: 12px;
+        text-align: center;
+    }
+    
+    /* Mobile Navbar */
+    .navbar {
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav-logo {
+        font-size: 16px;
+        order: 1;
+    }
+    
+    .nav-search {
+        order: 3;
+        width: 100%;
+        margin: 10px 0 0 0;
+        max-width: 100%;
+    }
+    
+    .nav-search input {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .nav-search button {
+        padding: 8px 12px;
+    }
+    
+    .nav-links {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+    
+    .nav-links li {
+        margin: 0;
+    }
+    
+    .nav-links a {
+        font-size: 10px;
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+    
+    /* Notification mobile */
+    .notification {
+        left: 10px !important;
+        right: 10px !important;
+        top: 10px !important;
+        font-size: 12px;
+        padding: 8px 12px !important;
+    }
+    
+    /* Particles optimization */
+    .particle {
+        opacity: 0.2;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .container.page-content {
+        padding: 15px 8px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .workshop-card {
+        padding: 12px;
+    }
+    
+    .workshop-name {
+        font-size: 16px;
+    }
+    
+    .workshop-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .action-btn {
+        font-size: 11px;
+        padding: 10px;
+    }
+    
+    .nav-logo {
+        font-size: 14px;
+    }
+    
+    #main-filter-section {
+        width: 95% !important;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container.page-content {
+        padding: 15px 10px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    
+    .workshop-list-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+        padding: 12px 10px;
+    }
+    
+    .workshop-card {
+        padding: 12px;
+    }
+    
+    .workshop-header {
+        margin-bottom: 10px;
+        gap: 8px;
+    }
+    
+    .workshop-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .workshop-name {
+        font-size: 16px;
+    }
+    
+    .workshop-info {
+        margin-bottom: 10px;
+    }
+    
+    .info-item {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    .service-tags {
+        margin-bottom: 10px;
+    }
+    
+    .workshop-actions {
+        gap: 6px;
+    }
+    
+    .action-btn {
+        font-size: 10px;
+        padding: 8px 10px;
+    }
+    
+    /* Filter adjustments for landscape */
+    #main-filter-section {
+        max-height: 60vh !important;
+    }
+}
+
+/* Ensure no horizontal scrolling */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Workshop images */
+    .workshop-icon img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .workshop-card,
+    .action-btn,
+    .btn {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .workshop-card:hover {
+        transform: none;
+        box-shadow: 0 8px 25px rgba(201, 162, 39, 0.2);
+    }
+    
+    .workshop-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .action-btn:hover {
+        transform: none;
+    }
+    
+    .action-btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Filter overlay for mobile */
+@media (max-width: 480px) {
+    /* Add overlay backdrop */
+    #main-filter-section::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: -1;
+    }
+    
+    /* Close button for mobile filter */
+    #main-filter-section::after {
+        content: '✕';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #c9a227;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10001;
+    }
+}
 </style>
 </head>
 <body>

@@ -104,6 +104,530 @@ font-size:13px;
 .approved{color:#28a745}
 .declined{color:#dc3545}
 
+/* ================= COMPREHENSIVE RESPONSIVE DESIGN ================= */
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .header {
+        padding: 30px 20px;
+    }
+    
+    .header h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    
+    .header p {
+        font-size: 16px;
+        margin: 0;
+    }
+    
+    .container {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+    
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .stat {
+        padding: 20px 15px;
+    }
+    
+    .stat h2 {
+        font-size: 32px;
+    }
+    
+    .request-search {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .search-box {
+        width: 100%;
+        padding: 12px 15px;
+    }
+    
+    .search-box input {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .filter {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 18px;
+        border-radius: 12px;
+    }
+    
+    .card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .user {
+        gap: 12px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+    
+    .user div {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+    
+    .details {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+    
+    .status {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .actions {
+        gap: 10px;
+        margin-top: 12px;
+    }
+    
+    button {
+        padding: 10px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+        line-height: 1.2;
+    }
+    
+    .header p {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .stat {
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .stat h2 {
+        font-size: 28px;
+        margin-bottom: 5px;
+    }
+    
+    .stat:not(:last-child) {
+        border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .request-search {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .search-box {
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+    
+    .search-box input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 5px 0;
+    }
+    
+    .filter {
+        padding: 10px;
+        font-size: 13px;
+        margin-bottom: 8px;
+        min-height: 44px; /* Touch target size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .filter:last-child {
+        margin-bottom: 0;
+    }
+    
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .card {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .card h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    
+    .user {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+    
+    .user div {
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .user div small {
+        display: block;
+        margin-top: 3px;
+        opacity: 0.8;
+    }
+    
+    .details {
+        font-size: 13px;
+        line-height: 1.5;
+        text-align: center;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .status {
+        font-size: 11px;
+        text-align: center;
+        padding: 6px 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 8px;
+        min-height: 44px; /* Touch target size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .approve {
+        background: #28a745;
+        color: white;
+    }
+    
+    .decline {
+        background: #dc3545;
+        color: white;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .header {
+        padding: 15px 10px;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+    }
+    
+    .header p {
+        font-size: 13px;
+    }
+    
+    .container {
+        padding: 15px 10px;
+    }
+    
+    .stat {
+        padding: 12px;
+    }
+    
+    .stat h2 {
+        font-size: 24px;
+    }
+    
+    .search-box {
+        padding: 8px 10px;
+    }
+    
+    .filter {
+        padding: 8px;
+        font-size: 12px;
+        min-height: 40px;
+    }
+    
+    .card {
+        padding: 12px;
+    }
+    
+    .card h3 {
+        font-size: 15px;
+    }
+    
+    .avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .details {
+        font-size: 12px;
+        padding: 8px;
+    }
+    
+    .status {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+    
+    button {
+        font-size: 12px;
+        padding: 10px;
+        min-height: 40px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 15px 20px;
+    }
+    
+    .header h1 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+    
+    .header p {
+        font-size: 13px;
+        margin: 0;
+    }
+    
+    .container {
+        padding: 15px 20px;
+    }
+    
+    .stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .stat {
+        padding: 10px 8px;
+    }
+    
+    .stat h2 {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+    
+    .request-search {
+        flex-direction: row;
+        padding: 10px;
+        margin-bottom: 15px;
+        gap: 10px;
+    }
+    
+    .search-box {
+        flex: 1;
+        padding: 8px 10px;
+    }
+    
+    .filter {
+        padding: 8px 10px;
+        font-size: 11px;
+        min-height: 36px;
+        white-space: nowrap;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 12px;
+    }
+    
+    .card {
+        padding: 12px;
+    }
+    
+    .card h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .user {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .user div {
+        font-size: 12px;
+    }
+    
+    .details {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .status {
+        font-size: 10px;
+        margin-bottom: 8px;
+    }
+    
+    .actions {
+        gap: 6px;
+        margin-top: 8px;
+    }
+    
+    button {
+        padding: 8px;
+        font-size: 11px;
+        min-height: 36px;
+    }
+}
+
+/* Ensure no horizontal scrolling */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .header h1,
+    .stat h2,
+    .card h3,
+    button,
+    .filter,
+    .search-box input {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .filter:hover {
+        background: #333;
+        color: #ddd;
+    }
+    
+    .filter:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .filter.active:active {
+        background: #c9a227;
+        color: black;
+    }
+    
+    button:hover {
+        transform: none;
+    }
+    
+    button:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .approve:active {
+        background: #218838;
+    }
+    
+    .decline:active {
+        background: #c82333;
+    }
+}
+
 </style>
 </head>
 <body>

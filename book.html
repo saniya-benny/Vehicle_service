@@ -408,6 +408,714 @@
         font-size: 14px;
     }
 }
+
+/* ================= COMPREHENSIVE RESPONSIVE DESIGN ================= */
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .booking-container {
+        padding: 60px 15px 30px;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .booking-card {
+        max-width: 100%;
+        padding: 30px 25px;
+        border-radius: 15px;
+    }
+    
+    .booking-header {
+        margin-bottom: 30px;
+    }
+    
+    .booking-title {
+        font-size: 32px;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+    
+    .booking-subtitle {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        font-size: 13px;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 15px;
+        font-size: 14px;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+    
+    .form-textarea {
+        min-height: 100px;
+    }
+    
+    .form-select {
+        padding-right: 40px;
+        background-position: right 15px center;
+    }
+    
+    .checkbox-label {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 8px;
+        margin-top: 8px;
+    }
+    
+    .checkbox-label input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .pickup-extra {
+        margin-top: 15px;
+    }
+    
+    .pickup-container {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .pickup-container .form-input {
+        width: 100%;
+        flex: none;
+    }
+    
+    .location-btn {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 13px;
+        justify-content: center;
+        white-space: normal;
+        text-align: center;
+        border-radius: 10px;
+    }
+    
+    .location-btn i {
+        font-size: 14px;
+        margin-right: 5px;
+    }
+    
+    .price-summary {
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 12px;
+    }
+    
+    .price-summary-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+    }
+    
+    .price-section {
+        margin-bottom: 15px;
+    }
+    
+    .price-section-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .price-item {
+        font-size: 13px;
+        padding: 6px 0;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .price-item.service {
+        padding-left: 15px;
+    }
+    
+    .price-value {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .grand-total {
+        font-size: 16px;
+        padding: 12px 0;
+    }
+    
+    .grand-total .price-value {
+        font-size: 20px;
+    }
+    
+    .submit-btn {
+        padding: 15px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin-top: 25px;
+        border-radius: 10px;
+    }
+    
+    /* Navbar adjustments */
+    .navbar {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+    
+    .nav-logo {
+        font-size: 18px;
+        order: 1;
+    }
+    
+    .nav-search {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+        max-width: 300px;
+    }
+    
+    .nav-links {
+        order: 2;
+        gap: 8px;
+    }
+    
+    .nav-links a {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    /* Notification */
+    .notification {
+        left: 10px !important;
+        right: 10px !important;
+        top: 10px !important;
+        font-size: 13px;
+        padding: 10px 15px !important;
+    }
+    
+    /* Particles optimization */
+    .particle {
+        opacity: 0.3;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .booking-container {
+        padding: 40px 10px 20px;
+        min-height: calc(100vh - 50px);
+    }
+    
+    .booking-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+        margin: 0 auto;
+    }
+    
+    .booking-header {
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    .booking-title {
+        font-size: 28px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        margin-bottom: 6px;
+    }
+    
+    .booking-subtitle {
+        font-size: 13px;
+        line-height: 1.3;
+        padding: 0 5px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-label {
+        font-size: 12px;
+        margin-bottom: 5px;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 10px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+        box-sizing: border-box;
+        border: 1px solid rgba(201, 162, 39, 0.3);
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+        padding: 12px 10px;
+        border-color: #c9a227;
+        box-shadow: 0 0 15px rgba(201, 162, 39, 0.3);
+    }
+    
+    .form-textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+    
+    .form-select {
+        padding-right: 35px;
+        background-position: right 10px center;
+        background-size: 10px;
+    }
+    
+    .checkbox-label {
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        margin-top: 5px;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .checkbox-label input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+    
+    .checkbox-label span {
+        line-height: 1.3;
+    }
+    
+    .pickup-extra {
+        margin-top: 12px;
+    }
+    
+    .pickup-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .pickup-container .form-input {
+        width: 100%;
+        flex: none;
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+    
+    .location-btn {
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 12px;
+        justify-content: center;
+        white-space: normal;
+        text-align: center;
+        border-radius: 8px;
+        line-height: 1.3;
+        min-height: 44px; /* Touch target size */
+    }
+    
+    .location-btn i {
+        font-size: 12px;
+        margin-right: 3px;
+        display: block;
+        margin: 0 auto 3px;
+    }
+    
+    .price-summary {
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 10px;
+    }
+    
+    .price-summary-title {
+        font-size: 16px;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+    
+    .price-section {
+        margin-bottom: 12px;
+    }
+    
+    .price-section-title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    .price-item {
+        font-size: 12px;
+        padding: 5px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+    
+    .price-item.service {
+        padding-left: 12px;
+    }
+    
+    .price-value {
+        font-size: 13px;
+        font-weight: 600;
+        align-self: flex-end;
+    }
+    
+    .price-divider {
+        margin: 10px 0;
+    }
+    
+    .grand-total {
+        font-size: 14px;
+        padding: 10px 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        text-align: center;
+    }
+    
+    .grand-total .price-value {
+        font-size: 18px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin-top: 20px;
+        border-radius: 8px;
+        min-height: 50px; /* Touch target size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .submit-btn i {
+        font-size: 14px;
+    }
+    
+    /* Mobile Navbar */
+    .navbar {
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav-logo {
+        font-size: 16px;
+        order: 1;
+    }
+    
+    .nav-search {
+        order: 3;
+        width: 100%;
+        margin: 8px 0 0 0;
+        max-width: 100%;
+    }
+    
+    .nav-search input {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .nav-search button {
+        padding: 8px 12px;
+    }
+    
+    .nav-links {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+    
+    .nav-links li {
+        margin: 0;
+    }
+    
+    .nav-links a {
+        font-size: 10px;
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+    
+    /* Notification mobile */
+    .notification {
+        left: 5px !important;
+        right: 5px !important;
+        top: 5px !important;
+        font-size: 12px;
+        padding: 8px 12px !important;
+        border-radius: 8px;
+    }
+    
+    /* Particles optimization */
+    .particle {
+        opacity: 0.2;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .booking-container {
+        padding: 30px 8px 15px;
+    }
+    
+    .booking-card {
+        padding: 15px 12px;
+    }
+    
+    .booking-title {
+        font-size: 24px;
+    }
+    
+    .booking-subtitle {
+        font-size: 12px;
+    }
+    
+    .form-label {
+        font-size: 11px;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+    
+    .checkbox-label {
+        font-size: 13px;
+        padding: 10px 8px;
+    }
+    
+    .location-btn {
+        font-size: 11px;
+        padding: 10px 8px;
+        min-height: 40px;
+    }
+    
+    .price-summary {
+        padding: 12px;
+    }
+    
+    .price-summary-title {
+        font-size: 14px;
+    }
+    
+    .price-item {
+        font-size: 11px;
+    }
+    
+    .price-value {
+        font-size: 12px;
+    }
+    
+    .grand-total {
+        font-size: 13px;
+    }
+    
+    .grand-total .price-value {
+        font-size: 16px;
+    }
+    
+    .submit-btn {
+        font-size: 14px;
+        padding: 12px;
+        min-height: 44px;
+    }
+    
+    .nav-logo {
+        font-size: 14px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .booking-container {
+        padding: 20px 10px;
+        min-height: calc(100vh - 40px);
+    }
+    
+    .booking-card {
+        padding: 15px;
+    }
+    
+    .booking-header {
+        margin-bottom: 15px;
+    }
+    
+    .booking-title {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    
+    .booking-subtitle {
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .form-label {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    .form-input,
+    .form-textarea,
+    .form-select {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    
+    .form-textarea {
+        min-height: 60px;
+    }
+    
+    .checkbox-label {
+        padding: 8px 10px;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+    
+    .pickup-extra {
+        margin-top: 8px;
+    }
+    
+    .pickup-container {
+        gap: 8px;
+    }
+    
+    .location-btn {
+        padding: 8px 10px;
+        font-size: 11px;
+        min-height: 36px;
+    }
+    
+    .price-summary {
+        padding: 12px;
+        margin: 15px 0;
+    }
+    
+    .price-summary-title {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .price-item {
+        font-size: 11px;
+        padding: 3px 0;
+    }
+    
+    .grand-total {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+    
+    .grand-total .price-value {
+        font-size: 16px;
+    }
+    
+    .submit-btn {
+        padding: 12px;
+        font-size: 14px;
+        margin-top: 15px;
+        min-height: 40px;
+    }
+}
+
+/* Ensure no horizontal scrolling */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .form-input,
+    .form-textarea,
+    .form-select,
+    .submit-btn,
+    .location-btn {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .checkbox-label:hover {
+        border-color: rgba(201, 162, 39, 0.2);
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .checkbox-label:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .location-btn:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+    }
+    
+    .location-btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .submit-btn:hover {
+        transform: none;
+        box-shadow: 0 8px 25px rgba(201, 162, 39, 0.3);
+    }
+    
+    .submit-btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
 </style>
 </head>
 <body>
