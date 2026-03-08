@@ -223,5 +223,303 @@ function createParticles() {
 createParticles();
 </script>
 
+<style>
+/* ================= RESPONSIVE DESIGN ================= */
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    .container.page-content {
+        max-width: 90%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    .big-name {
+        font-size: 48px !important;
+        line-height: 48px !important;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px 15px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    /* Navbar adjustments */
+    .navbar {
+        padding: 10px 15px;
+    }
+    
+    .nav-logo {
+        font-size: 20px;
+    }
+    
+    .nav-search {
+        display: none; /* Hide search on tablet for space */
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container.page-content {
+        max-width: 95%;
+        padding: 15px;
+        margin: 15px auto;
+        border-radius: 15px;
+    }
+    
+    .big-name {
+        font-size: 36px !important;
+        line-height: 36px !important;
+        margin-bottom: 20px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .divider {
+        width: 40px;
+        height: 3px;
+        margin: 10px auto 15px;
+    }
+    
+    .text {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+    
+    .form-container {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .form-group input {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 10px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    
+    .form-group input:focus {
+        outline: none;
+        border-color: #c9a227;
+        box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+    }
+    
+    /* Checkbox styling for mobile */
+    .form-group input[type="checkbox"] {
+        width: 18px !important;
+        height: 18px !important;
+        margin: 0;
+    }
+    
+    .form-group label span {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    
+    .btn {
+        width: 100% !important;
+        padding: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-sizing: border-box;
+    }
+    
+    /* Links styling */
+    .form-container + div {
+        margin-top: 20px;
+    }
+    
+    .form-container + div p {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+    
+    .form-container + div a {
+        font-size: 13px;
+    }
+    
+    /* Mobile navbar */
+    .navbar {
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav-logo {
+        font-size: 18px;
+        order: 1;
+    }
+    
+    .nav-search {
+        display: none; /* Hide search on mobile */
+    }
+    
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+    
+    .nav-links li {
+        margin: 0;
+    }
+    
+    .nav-links a {
+        font-size: 11px;
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+    
+    /* Particles optimization for mobile */
+    .particle {
+        opacity: 0.3;
+    }
+    
+    /* Notification responsive */
+    .notification {
+        left: 10px !important;
+        right: 10px !important;
+        top: 10px !important;
+        font-size: 14px;
+        padding: 12px 20px !important;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 320px) {
+    .container.page-content {
+        padding: 10px;
+        margin: 10px auto;
+    }
+    
+    .big-name {
+        font-size: 28px !important;
+        line-height: 28px !important;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .form-group input {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+    
+    .btn {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container.page-content {
+        margin: 10px auto;
+        padding: 15px;
+    }
+    
+    .big-name {
+        font-size: 32px !important;
+        line-height: 32px !important;
+        margin-bottom: 15px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        margin-bottom: 5px;
+    }
+    
+    .form-group input {
+        padding: 10px;
+    }
+    
+    .btn {
+        padding: 12px;
+    }
+}
+
+/* Ensure no horizontal scrolling */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .form-group input,
+    .btn {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+</style>
+
 </body>
 </html>
